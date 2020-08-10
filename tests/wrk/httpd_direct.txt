@@ -1,0 +1,189 @@
+***************************************
+*
+*  Test Apache httpd server directly
+*
+***************************************
+
+Purpose:
+=======
+
+Run performance tests with WRK against an Apache httpd server.
+
+
+Machines:
+========
+
+Driver machine: Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-112-generic x86_64)
+Client VM:      Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic aarch64)
+x86_64 VM:      Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic x86_64)
+arm64 VM:       Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-112-generic aarch64)
+
+
+Apache httpd server:
+===================
+
+System settings:
+
+    $ sysctl net.core.somaxconn
+net.core.somaxconn = 1024
+
+    $ sudo sysctl -w net.core.somaxconn=65535 
+net.core.somaxconn = 65535
+
+    $ sysctl net.ipv4.tcp_max_syn_backlog
+net.ipv4.tcp_max_syn_backlog = 1024
+
+    $ sudo sysctl -w net.ipv4.tcp_max_syn_backlog=65535
+net.ipv4.tcp_max_syn_backlog = 65535
+
+
+Configuration settings:
+
+Listen [Server IP]:8080
+ServerName [Server IP]:8080
+
+# KeepAlive settings
+Timeout 300
+KeepAlive On
+MaxKeepAliveRequests 500
+KeepAliveTimeout 5
+
+# Performance settings
+ListenBacklog 10000
+ThreadLimit 250
+ThreadsPerChild 250
+ServerLimit 30
+MaxRequestWorkers 7500
+MinSpareThreads 100
+MaxSpareThreads 700
+
+# CGI settings
+
+LoadModule cgid_module modules/mod_cgid.so
+ScriptAlias "/cgi-bin/" "[httpd install home]/cgi-bin/"
+
+CGI script:
+
+#!/usr/bin/perl
+# second.pl
+use strict;
+use warnings;
+
+print "Content-type: text/html\n\n";
+foreach my $key (keys %ENV) {
+    print "$key --> $ENV{$key}<br>";
+}
+
+
+WRK usage:
+=========
+
+Basic test:
+
+    $ wrk -t12 -c400 -d30s [target IP]:8080/cgi-bin/second.pl
+
+This runs a benchmark for 30 seconds, using 12 threads,
+and keeping 400 HTTP connections open.
+
+Focused test:
+
+    $ wrk -t8 -c96 -d30s [target IP]:8080/cgi-bin/second.pl
+
+This runs a benchmark for 30 seconds, using 8 threads,
+and keeping 96 HTTP connections open.
+
+
+Run WRK tests from client VM with internal IPs:
+====================================================
+
+Basic test, first round:
+
+Running 30s test @ [x86_64 VM IP]:8080/cgi-bin/second.pl
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   173.89ms  106.36ms   2.00s    92.06%
+    Req/Sec   202.19     33.77   550.00     73.64%
+  72423 requests in 30.04s, 73.99MB read
+  Socket errors: connect 0, read 0, write 0, timeout 2
+Requests/sec:   2410.63
+Transfer/sec:      2.46MB
+
+Running 30s test @ [arm64 VM IP]:8080/cgi-bin/second.pl
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   276.67ms  278.46ms   2.00s    89.59%
+    Req/Sec   142.89     37.90   575.00     72.05%
+  51187 requests in 30.04s, 52.34MB read
+  Socket errors: connect 0, read 0, write 0, timeout 234
+Requests/sec:   1703.75
+Transfer/sec:      1.74MB
+
+Basic test, second round:
+
+Running 30s test @ [x86_64 VM IP]:8080/cgi-bin/second.pl
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   160.46ms   14.13ms 507.34ms   96.42%
+    Req/Sec   206.24     37.12   333.00     77.10%
+  73985 requests in 30.10s, 75.45MB read
+Requests/sec:   2458.10
+Transfer/sec:      2.51MB
+
+Running 30s test @ [arm64 VM IP]:8080/cgi-bin/second.pl
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   225.14ms   14.50ms 763.66ms   98.16%
+    Req/Sec   146.78     43.16   300.00     66.71%
+  52602 requests in 30.04s, 53.48MB read
+Requests/sec:   1751.12
+Transfer/sec:      1.78MB
+
+Focused test, first round:
+
+Running 30s test @ [x86_64 VM IP]:8080/cgi-bin/second.pl
+  8 threads and 96 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    49.48ms   49.66ms 907.07ms   90.97%
+    Req/Sec   297.55     41.79   535.00     73.88%
+  71148 requests in 30.02s, 73.82MB read
+Requests/sec:   2369.84
+Transfer/sec:      2.46MB
+
+Running 30s test @ [arm64 VM IP]:8080/cgi-bin/second.pl
+  8 threads and 96 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   113.65ms  163.89ms   1.40s    87.24%
+    Req/Sec   212.76     63.60   500.00     70.40%
+  50876 requests in 30.02s, 52.54MB read
+Requests/sec:   1694.80
+Transfer/sec:      1.75MB
+
+Focused test, second round:
+
+Running 30s test @ [x86_64 VM IP]:8080/cgi-bin/second.pl
+  8 threads and 96 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    50.18ms   50.96ms 639.47ms   90.07%
+    Req/Sec   299.50     41.82   470.00     73.54%
+  71604 requests in 30.02s, 74.29MB read
+Requests/sec:   2385.21
+Transfer/sec:      2.47MB
+
+Running 30s test @ [x86_64 VM IP]:8080/cgi-bin/second.pl
+  8 threads and 96 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    99.54ms  135.99ms   1.48s    87.36%
+    Req/Sec   213.08     56.82   430.00     68.62%
+  50959 requests in 30.02s, 52.65MB read
+Requests/sec:   1697.50
+Transfer/sec:      1.75MB
+
+Summary:
+
+12 threads and 400 connections:
+  x86_64:   Latency  173.89ms, 160.46ms   Requests/sec:  2410.63, 2458.10
+  arm64:    Latency  276.67ms, 225.14ms   Requests/sec:  1703.75, 1751.12
+8 threads and 96 connections:
+  x86_64:   Latency   49.48ms,  50.18ms   Requests/sec:  2369.84, 2385.21
+  arm64:    Latency  113.65ms,  99.54ms   Requests/sec:  1694.80, 1697.50
+
