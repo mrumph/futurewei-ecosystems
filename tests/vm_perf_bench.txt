@@ -1,0 +1,2667 @@
+*******************************************************
+*
+*  Profile the VMs used for testing with "perf bench"
+*
+*******************************************************
+
+Purpose:
+=======
+
+Run various flavors of "perf bench" against the VMs used for testing.
+For information on the details of "perf bench", see perf_bench_info.txt.
+
+
+Machines:
+========
+
+Driver machine: 
+
+Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-112-generic x86_64)
+Located in Santa Clara, California
+
+Client VM:
+
+Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic aarch64)
+Located in Hong Kong
+
+x86_64 VM:
+
+Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic x86_64)
+Located in Hong Kong
+
+arm64 VM:
+
+Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-112-generic aarch64)
+Located in Hong Kong
+
+
+Results from "perf bench sched messaging":
+=========================================
+
+Driver machine: 
+
+# Running 'sched/messaging' benchmark:
+# 20 sender and receiver processes per group
+# 10 groups == 400 processes run
+
+     Total time: 0.052 [sec]
+
+Client VM:
+
+# Running 'sched/messaging' benchmark:
+# 20 sender and receiver processes per group
+# 10 groups == 400 processes run
+
+     Total time: 0.262 [sec]
+
+x86_64 VM:
+
+# Running 'sched/messaging' benchmark:
+# 20 sender and receiver processes per group
+# 10 groups == 400 processes run
+
+     Total time: 0.108 [sec]
+
+arm64 VM:
+
+# Running 'sched/messaging' benchmark:
+# 20 sender and receiver processes per group
+# 10 groups == 400 processes run
+
+     Total time: 0.554 [sec]
+
+
+Results from "perf bench sched pipe":
+====================================
+
+Driver machine: 
+
+# Running 'sched/pipe' benchmark:
+# Executed 1000000 pipe operations between two processes
+
+     Total time: 6.214 [sec]
+
+       6.214258 usecs/op
+         160920 ops/sec
+
+     Total time: 0.052 [sec]
+
+Client VM:
+
+# Running 'sched/pipe' benchmark:
+# Executed 1000000 pipe operations between two processes
+
+     Total time: 8.138 [sec]
+
+       8.138896 usecs/op
+         122866 ops/sec
+
+x86_64 VM:
+
+# Running 'sched/pipe' benchmark:
+# Executed 1000000 pipe operations between two processes
+
+     Total time: 15.044 [sec]
+
+      15.044804 usecs/op
+          66468 ops/sec
+
+arm64 VM:
+
+# Running 'sched/pipe' benchmark:
+# Executed 1000000 pipe operations between two processes
+
+     Total time: 7.796 [sec]
+
+       7.796615 usecs/op
+         128260 ops/sec
+
+
+Results from "perf bench mem memcpy":
+====================================
+
+Driver machine: 
+
+# Running 'mem/memcpy' benchmark:
+# function 'default' (Default memcpy() provided by glibc)
+# Copying 1MB bytes ...
+
+      10.067655 GB/sec
+# function 'x86-64-unrolled' (unrolled memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+
+       6.829108 GB/sec
+# function 'x86-64-movsq' (movsq-based memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+
+       9.864268 GB/sec
+# function 'x86-64-movsb' (movsb-based memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+
+       9.864268 GB/sec
+
+Client VM:
+
+# Running 'mem/memcpy' benchmark:
+# function 'default' (Default memcpy() provided by glibc)
+# Copying 1MB bytes ...
+
+      15.024038 GB/sec
+
+x86_64 VM:
+
+# Running 'mem/memcpy' benchmark:
+# function 'default' (Default memcpy() provided by glibc)
+# Copying 1MB bytes ...
+
+      23.818598 GB/sec
+# function 'x86-64-unrolled' (unrolled memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+
+      13.754401 GB/sec
+# function 'x86-64-movsq' (movsq-based memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+
+      34.877232 GB/sec
+# function 'x86-64-movsb' (movsb-based memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+
+      34.877232 GB/sec
+
+arm64 VM:
+
+# Running 'mem/memcpy' benchmark:
+# function 'default' (Default memcpy() provided by glibc)
+# Copying 1MB bytes ...
+
+      15.258789 GB/sec
+
+
+Results from "perf bench mem memset":
+====================================
+
+Driver machine: 
+
+# Running 'mem/memset' benchmark:
+# function 'default' (Default memset() provided by glibc)
+# Copying 1MB bytes ...
+
+      10.172526 GB/sec
+# function 'x86-64-unrolled' (unrolled memset() in arch/x86/lib/memset_64.S)
+# Copying 1MB bytes ...
+
+       7.287780 GB/sec
+# function 'x86-64-stosq' (movsq-based memset() in arch/x86/lib/memset_64.S)
+# Copying 1MB bytes ...
+
+      10.500672 GB/sec
+# function 'x86-64-stosb' (movsb-based memset() in arch/x86/lib/memset_64.S)
+# Copying 1MB bytes ...
+
+      10.388963 GB/sec
+
+Client VM:
+
+# Running 'mem/memset' benchmark:
+# function 'default' (Default memset() provided by glibc)
+# Copying 1MB bytes ...
+
+      17.755682 GB/sec
+
+x86_64 VM:
+
+# Running 'mem/memset' benchmark:
+# function 'default' (Default memset() provided by glibc)
+# Copying 1MB bytes ...
+
+      24.414062 GB/sec
+# function 'x86-64-unrolled' (unrolled memset() in arch/x86/lib/memset_64.S)
+# Copying 1MB bytes ...
+
+      18.084491 GB/sec
+# function 'x86-64-stosq' (movsq-based memset() in arch/x86/lib/memset_64.S)
+# Copying 1MB bytes ...
+
+      48.828125 GB/sec
+# function 'x86-64-stosb' (movsb-based memset() in arch/x86/lib/memset_64.S)
+# Copying 1MB bytes ...
+
+      48.828125 GB/sec
+
+arm64 VM:
+
+# Running 'mem/memset' benchmark:
+# function 'default' (Default memset() provided by glibc)
+# Copying 1MB bytes ...
+
+      19.531250 GB/sec
+
+
+Results from "perf bench numa mem":
+==================================
+
+Driver machine: 
+
+# Running 'numa/mem' benchmark:
+
+ # Running main, "perf bench numa numa-mem"
+ #
+ # Running test on: Linux per730-1 4.15.0-117-generic #118-Ubuntu SMP Fri Sep 4 20:02:41 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ #
+
+ # Running RAM-bw-local, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.095 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.092 secs average thread-runtime
+          0.236 % difference between max/avg runtime
+        147.246 GB data processed, per thread
+        147.246 GB data processed, total
+          0.136 nsecs/byte/thread runtime
+          7.328 GB/sec/thread speed
+          7.328 GB/sec total speed
+
+ # Running RAM-bw-local-NOTHP, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk --thp -1"
+         20.126 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.102 secs average thread-runtime
+          0.312 % difference between max/avg runtime
+        146.171 GB data processed, per thread
+        146.171 GB data processed, total
+          0.138 nsecs/byte/thread runtime
+          7.263 GB/sec/thread speed
+          7.263 GB/sec total speed
+
+ # Running RAM-bw-remote, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 1 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.019 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.015 secs average thread-runtime
+          0.047 % difference between max/avg runtime
+        142.947 GB data processed, per thread
+        142.947 GB data processed, total
+          0.140 nsecs/byte/thread runtime
+          7.141 GB/sec/thread speed
+          7.141 GB/sec total speed
+
+ # Running RAM-bw-local-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 0x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.068 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.037 secs average thread-runtime
+          0.170 % difference between max/avg runtime
+        145.634 GB data processed, per thread
+        291.268 GB data processed, total
+          0.138 nsecs/byte/thread runtime
+          7.257 GB/sec/thread speed
+         14.514 GB/sec total speed
+
+ # Running RAM-bw-remote-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 1x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.088 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.053 secs average thread-runtime
+          0.219 % difference between max/avg runtime
+        118.227 GB data processed, per thread
+        236.454 GB data processed, total
+          0.170 nsecs/byte/thread runtime
+          5.886 GB/sec/thread speed
+         11.771 GB/sec total speed
+
+ # Running RAM-bw-cross, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,8 -M 1,0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.131 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.086 secs average thread-runtime
+          0.324 % difference between max/avg runtime
+        144.559 GB data processed, per thread
+        289.119 GB data processed, total
+          0.139 nsecs/byte/thread runtime
+          7.181 GB/sec/thread speed
+         14.362 GB/sec total speed
+
+ # Running  1x3-convergence, "perf bench numa mem -p 1 -t 3 -P 512 -s 100 -zZ0qcm --thp  1"
+        100.061 secs latency to NUMA-converge
+        100.061 secs slowest (max) thread-runtime
+        100.000 secs fastest (min) thread-runtime
+        100.036 secs average thread-runtime
+          0.030 % difference between max/avg runtime
+        628.649 GB data processed, per thread
+       1885.946 GB data processed, total
+          0.159 nsecs/byte/thread runtime
+          6.283 GB/sec/thread speed
+         18.848 GB/sec total speed
+
+ # Running  1x4-convergence, "perf bench numa mem -p 1 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+        100.099 secs latency to NUMA-converge
+        100.099 secs slowest (max) thread-runtime
+        100.000 secs fastest (min) thread-runtime
+        100.085 secs average thread-runtime
+          0.050 % difference between max/avg runtime
+        578.801 GB data processed, per thread
+       2315.205 GB data processed, total
+          0.173 nsecs/byte/thread runtime
+          5.782 GB/sec/thread speed
+         23.129 GB/sec total speed
+
+ # Running  1x6-convergence, "perf bench numa mem -p 1 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+        100.212 secs latency to NUMA-converge
+        100.212 secs slowest (max) thread-runtime
+        100.000 secs fastest (min) thread-runtime
+        100.143 secs average thread-runtime
+          0.106 % difference between max/avg runtime
+        522.629 GB data processed, per thread
+       3135.776 GB data processed, total
+          0.192 nsecs/byte/thread runtime
+          5.215 GB/sec/thread speed
+         31.291 GB/sec total speed
+
+ # Running  2x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+        100.168 secs latency to NUMA-converge
+        100.168 secs slowest (max) thread-runtime
+        100.000 secs fastest (min) thread-runtime
+        100.074 secs average thread-runtime
+          0.084 % difference between max/avg runtime
+        595.251 GB data processed, per thread
+       5357.263 GB data processed, total
+          0.168 nsecs/byte/thread runtime
+          5.943 GB/sec/thread speed
+         53.483 GB/sec total speed
+
+ # Running  3x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+        100.170 secs latency to NUMA-converge
+        100.170 secs slowest (max) thread-runtime
+        100.000 secs fastest (min) thread-runtime
+        100.099 secs average thread-runtime
+          0.085 % difference between max/avg runtime
+        586.568 GB data processed, per thread
+       5279.109 GB data processed, total
+          0.171 nsecs/byte/thread runtime
+          5.856 GB/sec/thread speed
+         52.701 GB/sec total speed
+
+ # Running  4x4-convergence, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          4.010 secs latency to NUMA-converge
+          4.010 secs slowest (max) thread-runtime
+          3.000 secs fastest (min) thread-runtime
+          3.922 secs average thread-runtime
+         12.598 % difference between max/avg runtime
+         11.498 GB data processed, per thread
+        183.968 GB data processed, total
+          0.349 nsecs/byte/thread runtime
+          2.867 GB/sec/thread speed
+         45.872 GB/sec total speed
+
+ # Running  4x4-convergence-NOTHP, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          3.757 secs latency to NUMA-converge
+          3.757 secs slowest (max) thread-runtime
+          3.000 secs fastest (min) thread-runtime
+          3.681 secs average thread-runtime
+         10.073 % difference between max/avg runtime
+         12.507 GB data processed, per thread
+        200.106 GB data processed, total
+          0.300 nsecs/byte/thread runtime
+          3.329 GB/sec/thread speed
+         53.265 GB/sec total speed
+
+ # Running  4x6-convergence, "perf bench numa mem -p 4 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          5.769 secs latency to NUMA-converge
+          5.769 secs slowest (max) thread-runtime
+          5.000 secs fastest (min) thread-runtime
+          5.547 secs average thread-runtime
+          6.665 % difference between max/avg runtime
+         10.840 GB data processed, per thread
+        260.155 GB data processed, total
+          0.532 nsecs/byte/thread runtime
+          1.879 GB/sec/thread speed
+         45.095 GB/sec total speed
+
+ # Running  4x8-convergence, "perf bench numa mem -p 4 -t 8 -P 512 -s 100 -zZ0qcm --thp  1"
+         45.623 secs latency to NUMA-converge
+         45.623 secs slowest (max) thread-runtime
+         45.000 secs fastest (min) thread-runtime
+         45.488 secs average thread-runtime
+          0.682 % difference between max/avg runtime
+        100.524 GB data processed, per thread
+       3216.759 GB data processed, total
+          0.454 nsecs/byte/thread runtime
+          2.203 GB/sec/thread speed
+         70.508 GB/sec total speed
+
+ # Running  8x4-convergence, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+         13.018 secs latency to NUMA-converge
+         13.018 secs slowest (max) thread-runtime
+         12.000 secs fastest (min) thread-runtime
+         12.937 secs average thread-runtime
+          3.911 % difference between max/avg runtime
+         23.063 GB data processed, per thread
+        738.026 GB data processed, total
+          0.564 nsecs/byte/thread runtime
+          1.772 GB/sec/thread speed
+         56.692 GB/sec total speed
+
+ # Running  8x4-convergence-NOTHP, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          4.675 secs latency to NUMA-converge
+          4.675 secs slowest (max) thread-runtime
+          4.000 secs fastest (min) thread-runtime
+          4.549 secs average thread-runtime
+          7.215 % difference between max/avg runtime
+          7.699 GB data processed, per thread
+        246.367 GB data processed, total
+          0.607 nsecs/byte/thread runtime
+          1.647 GB/sec/thread speed
+         52.704 GB/sec total speed
+
+ # Running  3x1-convergence, "perf bench numa mem -p 3 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.736 secs latency to NUMA-converge
+          0.736 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.704 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.945 GB data processed, per thread
+         11.834 GB data processed, total
+          0.187 nsecs/byte/thread runtime
+          5.359 GB/sec/thread speed
+         16.078 GB/sec total speed
+
+ # Running  4x1-convergence, "perf bench numa mem -p 4 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.916 secs latency to NUMA-converge
+          0.916 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.886 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          4.707 GB data processed, per thread
+         18.827 GB data processed, total
+          0.195 nsecs/byte/thread runtime
+          5.141 GB/sec/thread speed
+         20.563 GB/sec total speed
+
+ # Running  8x1-convergence, "perf bench numa mem -p 8 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.793 secs latency to NUMA-converge
+          0.793 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.734 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.496 GB data processed, per thread
+         27.972 GB data processed, total
+          0.227 nsecs/byte/thread runtime
+          4.412 GB/sec/thread speed
+         35.294 GB/sec total speed
+
+ # Running 16x1-convergence, "perf bench numa mem -p 16 -t 1 -P 256 -s 100 -zZ0qcm --thp  1"
+          0.809 secs latency to NUMA-converge
+          0.809 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.761 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.206 GB data processed, per thread
+         35.302 GB data processed, total
+          0.367 nsecs/byte/thread runtime
+          2.727 GB/sec/thread speed
+         43.633 GB/sec total speed
+
+ # Running 32x1-convergence, "perf bench numa mem -p 32 -t 1 -P 128 -s 100 -zZ0qcm --thp  1"
+          0.916 secs latency to NUMA-converge
+          0.916 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.892 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.260 GB data processed, per thread
+         40.309 GB data processed, total
+          0.727 nsecs/byte/thread runtime
+          1.376 GB/sec/thread speed
+         44.025 GB/sec total speed
+
+ # Running  2x1-bw-process, "perf bench numa mem -p 2 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.150 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.108 secs average thread-runtime
+          0.372 % difference between max/avg runtime
+        130.050 GB data processed, per thread
+        260.099 GB data processed, total
+          0.155 nsecs/byte/thread runtime
+          6.454 GB/sec/thread speed
+         12.908 GB/sec total speed
+
+ # Running  3x1-bw-process, "perf bench numa mem -p 3 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.168 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.122 secs average thread-runtime
+          0.416 % difference between max/avg runtime
+        127.900 GB data processed, per thread
+        383.700 GB data processed, total
+          0.158 nsecs/byte/thread runtime
+          6.342 GB/sec/thread speed
+         19.026 GB/sec total speed
+
+ # Running  4x1-bw-process, "perf bench numa mem -p 4 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.143 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.116 secs average thread-runtime
+          0.355 % difference between max/avg runtime
+        124.944 GB data processed, per thread
+        499.778 GB data processed, total
+          0.161 nsecs/byte/thread runtime
+          6.203 GB/sec/thread speed
+         24.811 GB/sec total speed
+
+ # Running  8x1-bw-process, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1"
+         20.082 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.041 secs average thread-runtime
+          0.205 % difference between max/avg runtime
+        111.013 GB data processed, per thread
+        888.105 GB data processed, total
+          0.181 nsecs/byte/thread runtime
+          5.528 GB/sec/thread speed
+         44.223 GB/sec total speed
+
+ # Running  8x1-bw-process-NOTHP, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.123 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.049 secs average thread-runtime
+          0.307 % difference between max/avg runtime
+        110.005 GB data processed, per thread
+        880.036 GB data processed, total
+          0.183 nsecs/byte/thread runtime
+          5.466 GB/sec/thread speed
+         43.732 GB/sec total speed
+
+ # Running 16x1-bw-process, "perf bench numa mem -p 16 -t 1 -P 256 -s 20 -zZ0q --thp  1"
+         20.055 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.031 secs average thread-runtime
+          0.138 % difference between max/avg runtime
+         69.897 GB data processed, per thread
+       1118.359 GB data processed, total
+          0.287 nsecs/byte/thread runtime
+          3.485 GB/sec/thread speed
+         55.763 GB/sec total speed
+
+ # Running  4x1-bw-thread, "perf bench numa mem -p 1 -t 4 -T 256 -s 20 -zZ0q --thp  1"
+         20.033 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.016 secs average thread-runtime
+          0.083 % difference between max/avg runtime
+        130.296 GB data processed, per thread
+        521.182 GB data processed, total
+          0.154 nsecs/byte/thread runtime
+          6.504 GB/sec/thread speed
+         26.016 GB/sec total speed
+
+ # Running  8x1-bw-thread, "perf bench numa mem -p 1 -t 8 -T 256 -s 20 -zZ0q --thp  1"
+         20.040 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.023 secs average thread-runtime
+          0.101 % difference between max/avg runtime
+        123.255 GB data processed, per thread
+        986.042 GB data processed, total
+          0.163 nsecs/byte/thread runtime
+          6.150 GB/sec/thread speed
+         49.203 GB/sec total speed
+
+ # Running 16x1-bw-thread, "perf bench numa mem -p 1 -t 16 -T 128 -s 20 -zZ0q --thp  1"
+         20.021 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.015 secs average thread-runtime
+          0.053 % difference between max/avg runtime
+        107.647 GB data processed, per thread
+       1722.346 GB data processed, total
+          0.186 nsecs/byte/thread runtime
+          5.377 GB/sec/thread speed
+         86.026 GB/sec total speed
+
+ # Running 32x1-bw-thread, "perf bench numa mem -p 1 -t 32 -T 64 -s 20 -zZ0q --thp  1"
+         20.018 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.007 secs average thread-runtime
+          0.045 % difference between max/avg runtime
+         53.808 GB data processed, per thread
+       1721.861 GB data processed, total
+          0.372 nsecs/byte/thread runtime
+          2.688 GB/sec/thread speed
+         86.016 GB/sec total speed
+
+ # Running  2x3-bw-thread, "perf bench numa mem -p 2 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.082 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.027 secs average thread-runtime
+          0.205 % difference between max/avg runtime
+        115.294 GB data processed, per thread
+        691.764 GB data processed, total
+          0.174 nsecs/byte/thread runtime
+          5.741 GB/sec/thread speed
+         34.446 GB/sec total speed
+
+ # Running  4x4-bw-thread, "perf bench numa mem -p 4 -t 4 -P 512 -s 20 -zZ0q --thp  1"
+         20.081 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.045 secs average thread-runtime
+          0.202 % difference between max/avg runtime
+         86.840 GB data processed, per thread
+       1389.446 GB data processed, total
+          0.231 nsecs/byte/thread runtime
+          4.324 GB/sec/thread speed
+         69.191 GB/sec total speed
+
+ # Running  4x6-bw-thread, "perf bench numa mem -p 4 -t 6 -P 512 -s 20 -zZ0q --thp  1"
+         20.090 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.044 secs average thread-runtime
+          0.225 % difference between max/avg runtime
+         59.687 GB data processed, per thread
+       1432.480 GB data processed, total
+          0.337 nsecs/byte/thread runtime
+          2.971 GB/sec/thread speed
+         71.302 GB/sec total speed
+
+ # Running  4x8-bw-thread, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1"
+         20.260 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.128 secs average thread-runtime
+          0.641 % difference between max/avg runtime
+         36.259 GB data processed, per thread
+       1160.292 GB data processed, total
+          0.559 nsecs/byte/thread runtime
+          1.790 GB/sec/thread speed
+         57.271 GB/sec total speed
+
+ # Running  4x8-bw-thread-NOTHP, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.184 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.073 secs average thread-runtime
+          0.455 % difference between max/avg runtime
+         51.287 GB data processed, per thread
+       1641.192 GB data processed, total
+          0.394 nsecs/byte/thread runtime
+          2.541 GB/sec/thread speed
+         81.313 GB/sec total speed
+
+ # Running  3x3-bw-thread, "perf bench numa mem -p 3 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.057 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.035 secs average thread-runtime
+          0.143 % difference between max/avg runtime
+        116.848 GB data processed, per thread
+       1051.633 GB data processed, total
+          0.172 nsecs/byte/thread runtime
+          5.826 GB/sec/thread speed
+         52.431 GB/sec total speed
+
+ # Running  5x5-bw-thread, "perf bench numa mem -p 5 -t 5 -P 512 -s 20 -zZ0q --thp  1"
+         20.149 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.077 secs average thread-runtime
+          0.369 % difference between max/avg runtime
+         56.783 GB data processed, per thread
+       1419.570 GB data processed, total
+          0.355 nsecs/byte/thread runtime
+          2.818 GB/sec/thread speed
+         70.455 GB/sec total speed
+
+ # Running 2x16-bw-thread, "perf bench numa mem -p 2 -t 16 -P 512 -s 20 -zZ0q --thp  1"
+         20.253 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.115 secs average thread-runtime
+          0.624 % difference between max/avg runtime
+         36.461 GB data processed, per thread
+       1166.747 GB data processed, total
+          0.555 nsecs/byte/thread runtime
+          1.800 GB/sec/thread speed
+         57.609 GB/sec total speed
+
+ # Running 1x32-bw-thread, "perf bench numa mem -p 1 -t 32 -P 2048 -s 20 -zZ0q --thp  1"
+         21.183 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.493 secs average thread-runtime
+          2.793 % difference between max/avg runtime
+         29.139 GB data processed, per thread
+        932.463 GB data processed, total
+          0.727 nsecs/byte/thread runtime
+          1.376 GB/sec/thread speed
+         44.018 GB/sec total speed
+
+ # Running numa02-bw, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1"
+         19.999 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.005 secs average thread-runtime
+         -0.002 % difference between max/avg runtime
+         55.975 GB data processed, per thread
+       1791.190 GB data processed, total
+          0.357 nsecs/byte/thread runtime
+          2.799 GB/sec/thread speed
+         89.563 GB/sec total speed
+
+ # Running numa02-bw-NOTHP, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1 --thp -1"
+         20.050 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.004 secs average thread-runtime
+          2.618 % difference between max/avg runtime
+         54.977 GB data processed, per thread
+       1759.252 GB data processed, total
+          0.365 nsecs/byte/thread runtime
+          2.742 GB/sec/thread speed
+         87.744 GB/sec total speed
+
+ # Running numa01-bw-thread, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1"
+         20.043 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.027 secs average thread-runtime
+          0.106 % difference between max/avg runtime
+         47.798 GB data processed, per thread
+       1529.552 GB data processed, total
+          0.419 nsecs/byte/thread runtime
+          2.385 GB/sec/thread speed
+         76.315 GB/sec total speed
+
+ # Running numa01-bw-thread-NOTHP, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1 --thp -1"
+         20.193 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.048 secs average thread-runtime
+          0.477 % difference between max/avg runtime
+         47.546 GB data processed, per thread
+       1521.457 GB data processed, total
+          0.425 nsecs/byte/thread runtime
+          2.355 GB/sec/thread speed
+         75.347 GB/sec total speed
+
+Client VM:
+
+# Running 'numa/mem' benchmark:
+
+ # Running main, "perf bench numa numa-mem"
+ #
+ # Running test on: Linux martin-client 4.15.0-117-generic #118-Ubuntu SMP Fri Sep 4 20:05:59 UTC 2020 aarch64 aarch64 aarch64 GNU/Linux
+ #
+
+ # Running RAM-bw-local, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.011 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.008 secs average thread-runtime
+          0.027 % difference between max/avg runtime
+        723.334 GB data processed, per thread
+        723.334 GB data processed, total
+          0.028 nsecs/byte/thread runtime
+         36.147 GB/sec/thread speed
+         36.147 GB/sec total speed
+
+ # Running RAM-bw-local-NOTHP, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk --thp -1"
+         20.072 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.004 secs average thread-runtime
+          0.180 % difference between max/avg runtime
+        394.448 GB data processed, per thread
+        394.448 GB data processed, total
+          0.051 nsecs/byte/thread runtime
+         19.652 GB/sec/thread speed
+         19.652 GB/sec total speed
+
+ # Running RAM-bw-remote, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 1 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 1 nodes.
+
+ # Running RAM-bw-local-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 0x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.013 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.005 secs average thread-runtime
+          0.033 % difference between max/avg runtime
+        551.367 GB data processed, per thread
+       1102.735 GB data processed, total
+          0.036 nsecs/byte/thread runtime
+         27.550 GB/sec/thread speed
+         55.100 GB/sec total speed
+
+ # Running RAM-bw-remote-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 1x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 1 nodes.
+
+ # Running RAM-bw-cross, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,8 -M 1,0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 4 CPUs.
+
+ # Running  1x3-convergence, "perf bench numa mem -p 1 -t 3 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.740 secs latency to NUMA-converge
+          0.740 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.723 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          7.889 GB data processed, per thread
+         23.668 GB data processed, total
+          0.094 nsecs/byte/thread runtime
+         10.660 GB/sec/thread speed
+         31.980 GB/sec total speed
+
+ # Running  1x4-convergence, "perf bench numa mem -p 1 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.891 secs latency to NUMA-converge
+          0.891 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.884 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          8.069 GB data processed, per thread
+         32.275 GB data processed, total
+          0.110 nsecs/byte/thread runtime
+          9.061 GB/sec/thread speed
+         36.242 GB/sec total speed
+
+ # Running  1x6-convergence, "perf bench numa mem -p 1 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.970 secs latency to NUMA-converge
+          0.970 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.924 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          5.710 GB data processed, per thread
+         34.259 GB data processed, total
+          0.170 nsecs/byte/thread runtime
+          5.885 GB/sec/thread speed
+         35.308 GB/sec total speed
+
+ # Running  2x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.704 secs latency to NUMA-converge
+          0.704 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.667 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.855 GB data processed, per thread
+         25.694 GB data processed, total
+          0.247 nsecs/byte/thread runtime
+          4.056 GB/sec/thread speed
+         36.502 GB/sec total speed
+
+ # Running  3x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.766 secs latency to NUMA-converge
+          0.766 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.723 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.093 GB data processed, per thread
+         27.835 GB data processed, total
+          0.248 nsecs/byte/thread runtime
+          4.039 GB/sec/thread speed
+         36.349 GB/sec total speed
+
+ # Running  4x4-convergence, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.796 secs latency to NUMA-converge
+          0.796 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.791 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.916 GB data processed, per thread
+         30.661 GB data processed, total
+          0.415 nsecs/byte/thread runtime
+          2.407 GB/sec/thread speed
+         38.512 GB/sec total speed
+
+ # Running  4x4-convergence-NOTHP, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          0.639 secs latency to NUMA-converge
+          0.639 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.562 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.244 GB data processed, per thread
+         19.903 GB data processed, total
+          0.514 nsecs/byte/thread runtime
+          1.945 GB/sec/thread speed
+         31.123 GB/sec total speed
+
+ # Running  4x6-convergence, "perf bench numa mem -p 4 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          1.327 secs latency to NUMA-converge
+          1.327 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          1.262 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.097 GB data processed, per thread
+         50.318 GB data processed, total
+          0.633 nsecs/byte/thread runtime
+          1.580 GB/sec/thread speed
+         37.931 GB/sec total speed
+
+ # Running  4x8-convergence, "perf bench numa mem -p 4 -t 8 -P 512 -s 100 -zZ0qcm --thp  1"
+          1.141 secs latency to NUMA-converge
+          1.141 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          1.085 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.395 GB data processed, per thread
+         44.647 GB data processed, total
+          0.817 nsecs/byte/thread runtime
+          1.223 GB/sec/thread speed
+         39.146 GB/sec total speed
+
+ # Running  8x4-convergence, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          1.774 secs latency to NUMA-converge
+          1.774 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.739 secs average thread-runtime
+         21.808 % difference between max/avg runtime
+          2.084 GB data processed, per thread
+         66.702 GB data processed, total
+          0.851 nsecs/byte/thread runtime
+          1.175 GB/sec/thread speed
+         37.609 GB/sec total speed
+
+ # Running  8x4-convergence-NOTHP, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          1.948 secs latency to NUMA-converge
+          1.948 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.788 secs average thread-runtime
+         24.335 % difference between max/avg runtime
+          1.866 GB data processed, per thread
+         59.709 GB data processed, total
+          1.044 nsecs/byte/thread runtime
+          0.958 GB/sec/thread speed
+         30.648 GB/sec total speed
+
+ # Running  3x1-convergence, "perf bench numa mem -p 3 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.104 secs latency to NUMA-converge
+          0.104 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.100 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.076 GB data processed, per thread
+          3.228 GB data processed, total
+          0.096 nsecs/byte/thread runtime
+         10.385 GB/sec/thread speed
+         31.156 GB/sec total speed
+
+ # Running  4x1-convergence, "perf bench numa mem -p 4 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.903 secs latency to NUMA-converge
+          0.903 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.898 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          8.069 GB data processed, per thread
+         32.275 GB data processed, total
+          0.112 nsecs/byte/thread runtime
+          8.931 GB/sec/thread speed
+         35.724 GB/sec total speed
+
+ # Running  8x1-convergence, "perf bench numa mem -p 8 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.801 secs latency to NUMA-converge
+          0.801 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.796 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.698 GB data processed, per thread
+         29.586 GB data processed, total
+          0.217 nsecs/byte/thread runtime
+          4.615 GB/sec/thread speed
+         36.917 GB/sec total speed
+
+ # Running 16x1-convergence, "perf bench numa mem -p 16 -t 1 -P 256 -s 100 -zZ0qcm --thp  1"
+          0.719 secs latency to NUMA-converge
+          0.719 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.715 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.634 GB data processed, per thread
+         26.140 GB data processed, total
+          0.440 nsecs/byte/thread runtime
+          2.271 GB/sec/thread speed
+         36.344 GB/sec total speed
+
+ # Running 32x1-convergence, "perf bench numa mem -p 32 -t 1 -P 128 -s 100 -zZ0qcm --thp  1"
+          0.602 secs latency to NUMA-converge
+          0.602 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.639 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          0.786 GB data processed, per thread
+         25.160 GB data processed, total
+          0.766 nsecs/byte/thread runtime
+          1.306 GB/sec/thread speed
+         41.781 GB/sec total speed
+
+ # Running  2x1-bw-process, "perf bench numa mem -p 2 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.050 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.039 secs average thread-runtime
+          0.125 % difference between max/avg runtime
+        262.249 GB data processed, per thread
+        524.498 GB data processed, total
+          0.076 nsecs/byte/thread runtime
+         13.080 GB/sec/thread speed
+         26.159 GB/sec total speed
+
+ # Running  3x1-bw-process, "perf bench numa mem -p 3 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.064 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.043 secs average thread-runtime
+          0.159 % difference between max/avg runtime
+        213.525 GB data processed, per thread
+        640.575 GB data processed, total
+          0.094 nsecs/byte/thread runtime
+         10.642 GB/sec/thread speed
+         31.927 GB/sec total speed
+
+ # Running  4x1-bw-process, "perf bench numa mem -p 4 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.084 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.063 secs average thread-runtime
+          0.209 % difference between max/avg runtime
+        177.609 GB data processed, per thread
+        710.436 GB data processed, total
+          0.113 nsecs/byte/thread runtime
+          8.843 GB/sec/thread speed
+         35.374 GB/sec total speed
+
+ # Running  8x1-bw-process, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1"
+         20.061 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.049 secs average thread-runtime
+          0.153 % difference between max/avg runtime
+         88.689 GB data processed, per thread
+        709.516 GB data processed, total
+          0.226 nsecs/byte/thread runtime
+          4.421 GB/sec/thread speed
+         35.367 GB/sec total speed
+
+ # Running  8x1-bw-process-NOTHP, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.166 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.075 secs average thread-runtime
+          0.412 % difference between max/avg runtime
+         77.191 GB data processed, per thread
+        617.532 GB data processed, total
+          0.261 nsecs/byte/thread runtime
+          3.828 GB/sec/thread speed
+         30.622 GB/sec total speed
+
+ # Running 16x1-bw-process, "perf bench numa mem -p 16 -t 1 -P 256 -s 20 -zZ0q --thp  1"
+         20.022 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.016 secs average thread-runtime
+          2.552 % difference between max/avg runtime
+         44.583 GB data processed, per thread
+        713.324 GB data processed, total
+          0.449 nsecs/byte/thread runtime
+          2.227 GB/sec/thread speed
+         35.627 GB/sec total speed
+
+ # Running  4x1-bw-thread, "perf bench numa mem -p 1 -t 4 -T 256 -s 20 -zZ0q --thp  1"
+         20.023 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.014 secs average thread-runtime
+          0.057 % difference between max/avg runtime
+        178.803 GB data processed, per thread
+        715.211 GB data processed, total
+          0.112 nsecs/byte/thread runtime
+          8.930 GB/sec/thread speed
+         35.720 GB/sec total speed
+
+ # Running  8x1-bw-thread, "perf bench numa mem -p 1 -t 8 -T 256 -s 20 -zZ0q --thp  1"
+         20.034 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.036 secs average thread-runtime
+          0.084 % difference between max/avg runtime
+         89.334 GB data processed, per thread
+        714.672 GB data processed, total
+          0.224 nsecs/byte/thread runtime
+          4.459 GB/sec/thread speed
+         35.673 GB/sec total speed
+
+ # Running 16x1-bw-thread, "perf bench numa mem -p 1 -t 16 -T 128 -s 20 -zZ0q --thp  1"
+         19.989 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.008 secs average thread-runtime
+          2.474 % difference between max/avg runtime
+         45.069 GB data processed, per thread
+        721.105 GB data processed, total
+          0.444 nsecs/byte/thread runtime
+          2.255 GB/sec/thread speed
+         36.075 GB/sec total speed
+
+ # Running 32x1-bw-thread, "perf bench numa mem -p 1 -t 32 -T 64 -s 20 -zZ0q --thp  1"
+         19.950 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.986 secs average thread-runtime
+          2.380 % difference between max/avg runtime
+         22.852 GB data processed, per thread
+        731.261 GB data processed, total
+          0.873 nsecs/byte/thread runtime
+          1.145 GB/sec/thread speed
+         36.655 GB/sec total speed
+
+ # Running  2x3-bw-thread, "perf bench numa mem -p 2 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.034 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.027 secs average thread-runtime
+          0.086 % difference between max/avg runtime
+        119.508 GB data processed, per thread
+        717.047 GB data processed, total
+          0.168 nsecs/byte/thread runtime
+          5.965 GB/sec/thread speed
+         35.791 GB/sec total speed
+
+ # Running  4x4-bw-thread, "perf bench numa mem -p 4 -t 4 -P 512 -s 20 -zZ0q --thp  1"
+         20.089 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.070 secs average thread-runtime
+          0.223 % difference between max/avg runtime
+         44.815 GB data processed, per thread
+        717.047 GB data processed, total
+          0.448 nsecs/byte/thread runtime
+          2.231 GB/sec/thread speed
+         35.693 GB/sec total speed
+
+ # Running  4x6-bw-thread, "perf bench numa mem -p 4 -t 6 -P 512 -s 20 -zZ0q --thp  1"
+         20.066 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.080 secs average thread-runtime
+          2.657 % difference between max/avg runtime
+         29.944 GB data processed, per thread
+        718.660 GB data processed, total
+          0.670 nsecs/byte/thread runtime
+          1.492 GB/sec/thread speed
+         35.814 GB/sec total speed
+
+ # Running  4x8-bw-thread, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1"
+         20.144 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.134 secs average thread-runtime
+          2.839 % difference between max/avg runtime
+         22.559 GB data processed, per thread
+        721.888 GB data processed, total
+          0.893 nsecs/byte/thread runtime
+          1.120 GB/sec/thread speed
+         35.837 GB/sec total speed
+
+ # Running  4x8-bw-thread-NOTHP, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.166 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.097 secs average thread-runtime
+          2.892 % difference between max/avg runtime
+         20.054 GB data processed, per thread
+        641.738 GB data processed, total
+          1.006 nsecs/byte/thread runtime
+          0.994 GB/sec/thread speed
+         31.822 GB/sec total speed
+
+ # Running  3x3-bw-thread, "perf bench numa mem -p 3 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.072 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.052 secs average thread-runtime
+          0.178 % difference between max/avg runtime
+         79.552 GB data processed, per thread
+        715.971 GB data processed, total
+          0.252 nsecs/byte/thread runtime
+          3.963 GB/sec/thread speed
+         35.671 GB/sec total speed
+
+ # Running  5x5-bw-thread, "perf bench numa mem -p 5 -t 5 -P 512 -s 20 -zZ0q --thp  1"
+         20.165 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.130 secs average thread-runtime
+          0.408 % difference between max/avg runtime
+         28.789 GB data processed, per thread
+        719.736 GB data processed, total
+          0.700 nsecs/byte/thread runtime
+          1.428 GB/sec/thread speed
+         35.693 GB/sec total speed
+
+ # Running 2x16-bw-thread, "perf bench numa mem -p 2 -t 16 -P 512 -s 20 -zZ0q --thp  1"
+         20.137 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.121 secs average thread-runtime
+          2.824 % difference between max/avg runtime
+         22.660 GB data processed, per thread
+        725.115 GB data processed, total
+          0.889 nsecs/byte/thread runtime
+          1.125 GB/sec/thread speed
+         36.009 GB/sec total speed
+
+ # Running 1x32-bw-thread, "perf bench numa mem -p 1 -t 32 -P 2048 -s 20 -zZ0q --thp  1"
+         21.160 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         21.112 secs average thread-runtime
+          2.741 % difference between max/avg runtime
+         23.634 GB data processed, per thread
+        756.283 GB data processed, total
+          0.895 nsecs/byte/thread runtime
+          1.117 GB/sec/thread speed
+         35.742 GB/sec total speed
+
+ # Running numa02-bw, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1"
+         19.937 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.978 secs average thread-runtime
+          2.350 % difference between max/avg runtime
+         23.674 GB data processed, per thread
+        757.564 GB data processed, total
+          0.842 nsecs/byte/thread runtime
+          1.187 GB/sec/thread speed
+         37.998 GB/sec total speed
+
+ # Running numa02-bw-NOTHP, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1 --thp -1"
+         19.975 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.966 secs average thread-runtime
+          2.440 % difference between max/avg runtime
+         21.976 GB data processed, per thread
+        703.237 GB data processed, total
+          0.909 nsecs/byte/thread runtime
+          1.100 GB/sec/thread speed
+         35.206 GB/sec total speed
+
+ # Running numa01-bw-thread, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1"
+         20.105 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.068 secs average thread-runtime
+          0.261 % difference between max/avg runtime
+         21.332 GB data processed, per thread
+        682.611 GB data processed, total
+          0.942 nsecs/byte/thread runtime
+          1.061 GB/sec/thread speed
+         33.953 GB/sec total speed
+
+ # Running numa01-bw-thread-NOTHP, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1 --thp -1"
+         20.220 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.031 secs average thread-runtime
+          3.016 % difference between max/avg runtime
+         19.339 GB data processed, per thread
+        618.863 GB data processed, total
+          1.046 nsecs/byte/thread runtime
+          0.956 GB/sec/thread speed
+         30.607 GB/sec total speed
+
+x86_64 VM:
+
+# Running 'numa/mem' benchmark:
+
+ # Running main, "perf bench numa numa-mem"
+ #
+ # Running test on: Linux ecs-ff5d 4.15.0-117-generic #118-Ubuntu SMP Fri Sep 4 20:02:41 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ #
+
+ # Running RAM-bw-local, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.147 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.145 secs average thread-runtime
+          0.364 % difference between max/avg runtime
+        146.171 GB data processed, per thread
+        146.171 GB data processed, total
+          0.138 nsecs/byte/thread runtime
+          7.255 GB/sec/thread speed
+          7.255 GB/sec total speed
+
+ # Running RAM-bw-local-NOTHP, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk --thp -1"
+         20.120 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.095 secs average thread-runtime
+          0.298 % difference between max/avg runtime
+        142.947 GB data processed, per thread
+        142.947 GB data processed, total
+          0.141 nsecs/byte/thread runtime
+          7.105 GB/sec/thread speed
+          7.105 GB/sec total speed
+
+ # Running RAM-bw-remote, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 1 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 1 nodes.
+
+ # Running RAM-bw-local-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 0x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.023 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.018 secs average thread-runtime
+          0.057 % difference between max/avg runtime
+        142.947 GB data processed, per thread
+        285.894 GB data processed, total
+          0.140 nsecs/byte/thread runtime
+          7.139 GB/sec/thread speed
+         14.278 GB/sec total speed
+
+ # Running RAM-bw-remote-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 1x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 1 nodes.
+
+ # Running RAM-bw-cross, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,8 -M 1,0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 8 CPUs.
+
+ # Running  1x3-convergence, "perf bench numa mem -p 1 -t 3 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.685 secs latency to NUMA-converge
+          0.685 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.652 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          4.124 GB data processed, per thread
+         12.372 GB data processed, total
+          0.166 nsecs/byte/thread runtime
+          6.018 GB/sec/thread speed
+         18.054 GB/sec total speed
+
+ # Running  1x4-convergence, "perf bench numa mem -p 1 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.879 secs latency to NUMA-converge
+          0.879 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.868 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          5.379 GB data processed, per thread
+         21.517 GB data processed, total
+          0.163 nsecs/byte/thread runtime
+          6.123 GB/sec/thread speed
+         24.491 GB/sec total speed
+
+ # Running  1x6-convergence, "perf bench numa mem -p 1 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.904 secs latency to NUMA-converge
+          0.904 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.863 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          5.175 GB data processed, per thread
+         31.047 GB data processed, total
+          0.175 nsecs/byte/thread runtime
+          5.722 GB/sec/thread speed
+         34.333 GB/sec total speed
+
+ # Running  2x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.651 secs latency to NUMA-converge
+          0.651 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.605 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.093 GB data processed, per thread
+         27.835 GB data processed, total
+          0.211 nsecs/byte/thread runtime
+          4.748 GB/sec/thread speed
+         42.731 GB/sec total speed
+
+ # Running  3x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.854 secs latency to NUMA-converge
+          0.854 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.757 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.926 GB data processed, per thread
+         35.330 GB data processed, total
+          0.217 nsecs/byte/thread runtime
+          4.598 GB/sec/thread speed
+         41.384 GB/sec total speed
+
+ # Running  4x4-convergence, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.962 secs latency to NUMA-converge
+          0.962 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.939 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.824 GB data processed, per thread
+         45.185 GB data processed, total
+          0.341 nsecs/byte/thread runtime
+          2.935 GB/sec/thread speed
+         46.961 GB/sec total speed
+
+ # Running  4x4-convergence-NOTHP, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          0.689 secs latency to NUMA-converge
+          0.689 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.663 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.883 GB data processed, per thread
+         30.123 GB data processed, total
+          0.366 nsecs/byte/thread runtime
+          2.731 GB/sec/thread speed
+         43.703 GB/sec total speed
+
+ # Running  4x6-convergence, "perf bench numa mem -p 4 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          1.769 secs latency to NUMA-converge
+          1.769 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.714 secs average thread-runtime
+         21.735 % difference between max/avg runtime
+          3.479 GB data processed, per thread
+         83.506 GB data processed, total
+          0.508 nsecs/byte/thread runtime
+          1.967 GB/sec/thread speed
+         47.205 GB/sec total speed
+
+ # Running  4x8-convergence, "perf bench numa mem -p 4 -t 8 -P 512 -s 100 -zZ0qcm --thp  1"
+          1.751 secs latency to NUMA-converge
+          1.751 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.773 secs average thread-runtime
+         21.444 % difference between max/avg runtime
+          2.723 GB data processed, per thread
+         87.143 GB data processed, total
+          0.643 nsecs/byte/thread runtime
+          1.555 GB/sec/thread speed
+         49.769 GB/sec total speed
+
+ # Running  8x4-convergence, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          1.735 secs latency to NUMA-converge
+          1.735 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.711 secs average thread-runtime
+         21.184 % difference between max/avg runtime
+          2.622 GB data processed, per thread
+         83.915 GB data processed, total
+          0.662 nsecs/byte/thread runtime
+          1.511 GB/sec/thread speed
+         48.362 GB/sec total speed
+
+ # Running  8x4-convergence-NOTHP, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          1.622 secs latency to NUMA-converge
+          1.622 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.576 secs average thread-runtime
+         19.167 % difference between max/avg runtime
+          2.253 GB data processed, per thread
+         72.081 GB data processed, total
+          0.720 nsecs/byte/thread runtime
+          1.389 GB/sec/thread speed
+         44.450 GB/sec total speed
+
+ # Running  3x1-convergence, "perf bench numa mem -p 3 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.515 secs latency to NUMA-converge
+          0.515 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.481 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          3.048 GB data processed, per thread
+          9.145 GB data processed, total
+          0.169 nsecs/byte/thread runtime
+          5.923 GB/sec/thread speed
+         17.769 GB/sec total speed
+
+ # Running  4x1-convergence, "perf bench numa mem -p 4 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.860 secs latency to NUMA-converge
+          0.860 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.837 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          5.245 GB data processed, per thread
+         20.979 GB data processed, total
+          0.164 nsecs/byte/thread runtime
+          6.095 GB/sec/thread speed
+         24.381 GB/sec total speed
+
+ # Running  8x1-convergence, "perf bench numa mem -p 8 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.821 secs latency to NUMA-converge
+          0.821 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.757 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          4.371 GB data processed, per thread
+         34.965 GB data processed, total
+          0.188 nsecs/byte/thread runtime
+          5.322 GB/sec/thread speed
+         42.580 GB/sec total speed
+
+ # Running 16x1-convergence, "perf bench numa mem -p 16 -t 1 -P 256 -s 100 -zZ0qcm --thp  1"
+          0.797 secs latency to NUMA-converge
+          0.797 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.782 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.341 GB data processed, per thread
+         37.458 GB data processed, total
+          0.340 nsecs/byte/thread runtime
+          2.938 GB/sec/thread speed
+         47.008 GB/sec total speed
+
+ # Running 32x1-convergence, "perf bench numa mem -p 32 -t 1 -P 128 -s 100 -zZ0qcm --thp  1"
+          0.687 secs latency to NUMA-converge
+          0.687 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.737 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.179 GB data processed, per thread
+         37.739 GB data processed, total
+          0.582 nsecs/byte/thread runtime
+          1.717 GB/sec/thread speed
+         54.959 GB/sec total speed
+
+ # Running  2x1-bw-process, "perf bench numa mem -p 2 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.108 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.074 secs average thread-runtime
+          0.269 % difference between max/avg runtime
+        128.975 GB data processed, per thread
+        257.950 GB data processed, total
+          0.156 nsecs/byte/thread runtime
+          6.414 GB/sec/thread speed
+         12.828 GB/sec total speed
+
+ # Running  3x1-bw-process, "perf bench numa mem -p 3 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.168 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.159 secs average thread-runtime
+          0.417 % difference between max/avg runtime
+        126.109 GB data processed, per thread
+        378.326 GB data processed, total
+          0.160 nsecs/byte/thread runtime
+          6.253 GB/sec/thread speed
+         18.758 GB/sec total speed
+
+ # Running  4x1-bw-process, "perf bench numa mem -p 4 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.165 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.090 secs average thread-runtime
+          0.408 % difference between max/avg runtime
+        124.944 GB data processed, per thread
+        499.778 GB data processed, total
+          0.161 nsecs/byte/thread runtime
+          6.196 GB/sec/thread speed
+         24.785 GB/sec total speed
+
+ # Running  8x1-bw-process, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1"
+         20.086 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.048 secs average thread-runtime
+          0.214 % difference between max/avg runtime
+        115.922 GB data processed, per thread
+        927.373 GB data processed, total
+          0.173 nsecs/byte/thread runtime
+          5.771 GB/sec/thread speed
+         46.170 GB/sec total speed
+
+ # Running  8x1-bw-process-NOTHP, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.100 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.041 secs average thread-runtime
+          0.249 % difference between max/avg runtime
+        106.239 GB data processed, per thread
+        849.913 GB data processed, total
+          0.189 nsecs/byte/thread runtime
+          5.286 GB/sec/thread speed
+         42.284 GB/sec total speed
+
+ # Running 16x1-bw-process, "perf bench numa mem -p 16 -t 1 -P 256 -s 20 -zZ0q --thp  1"
+         20.018 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.021 secs average thread-runtime
+          2.543 % difference between max/avg runtime
+         58.360 GB data processed, per thread
+        933.762 GB data processed, total
+          0.343 nsecs/byte/thread runtime
+          2.915 GB/sec/thread speed
+         46.646 GB/sec total speed
+
+ # Running  4x1-bw-thread, "perf bench numa mem -p 1 -t 4 -T 256 -s 20 -zZ0q --thp  1"
+         20.023 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.012 secs average thread-runtime
+          0.057 % difference between max/avg runtime
+        127.264 GB data processed, per thread
+        509.055 GB data processed, total
+          0.157 nsecs/byte/thread runtime
+          6.356 GB/sec/thread speed
+         25.424 GB/sec total speed
+
+ # Running  8x1-bw-thread, "perf bench numa mem -p 1 -t 8 -T 256 -s 20 -zZ0q --thp  1"
+         20.040 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.026 secs average thread-runtime
+          0.099 % difference between max/avg runtime
+        116.484 GB data processed, per thread
+        931.876 GB data processed, total
+          0.172 nsecs/byte/thread runtime
+          5.813 GB/sec/thread speed
+         46.501 GB/sec total speed
+
+ # Running 16x1-bw-thread, "perf bench numa mem -p 1 -t 16 -T 128 -s 20 -zZ0q --thp  1"
+         20.003 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.012 secs average thread-runtime
+          2.508 % difference between max/avg runtime
+         59.221 GB data processed, per thread
+        947.540 GB data processed, total
+          0.338 nsecs/byte/thread runtime
+          2.961 GB/sec/thread speed
+         47.369 GB/sec total speed
+
+ # Running 32x1-bw-thread, "perf bench numa mem -p 1 -t 32 -T 64 -s 20 -zZ0q --thp  1"
+         19.957 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.981 secs average thread-runtime
+          2.398 % difference between max/avg runtime
+         30.373 GB data processed, per thread
+        971.925 GB data processed, total
+          0.657 nsecs/byte/thread runtime
+          1.522 GB/sec/thread speed
+         48.701 GB/sec total speed
+
+ # Running  2x3-bw-thread, "perf bench numa mem -p 2 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.078 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.055 secs average thread-runtime
+          0.195 % difference between max/avg runtime
+        121.839 GB data processed, per thread
+        731.033 GB data processed, total
+          0.165 nsecs/byte/thread runtime
+          6.068 GB/sec/thread speed
+         36.409 GB/sec total speed
+
+ # Running  4x4-bw-thread, "perf bench numa mem -p 4 -t 4 -P 512 -s 20 -zZ0q --thp  1"
+         20.025 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.020 secs average thread-runtime
+          2.559 % difference between max/avg runtime
+         58.398 GB data processed, per thread
+        934.366 GB data processed, total
+          0.343 nsecs/byte/thread runtime
+          2.916 GB/sec/thread speed
+         46.661 GB/sec total speed
+
+ # Running  4x6-bw-thread, "perf bench numa mem -p 4 -t 6 -P 512 -s 20 -zZ0q --thp  1"
+         20.074 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.063 secs average thread-runtime
+          2.675 % difference between max/avg runtime
+         38.999 GB data processed, per thread
+        935.980 GB data processed, total
+          0.515 nsecs/byte/thread runtime
+          1.943 GB/sec/thread speed
+         46.626 GB/sec total speed
+
+ # Running  4x8-bw-thread, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1"
+         20.121 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.116 secs average thread-runtime
+          2.786 % difference between max/avg runtime
+         29.350 GB data processed, per thread
+        939.207 GB data processed, total
+          0.686 nsecs/byte/thread runtime
+          1.459 GB/sec/thread speed
+         46.678 GB/sec total speed
+
+ # Running  4x8-bw-thread-NOTHP, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.106 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.098 secs average thread-runtime
+          2.749 % difference between max/avg runtime
+         26.930 GB data processed, per thread
+        861.747 GB data processed, total
+          0.747 nsecs/byte/thread runtime
+          1.339 GB/sec/thread speed
+         42.861 GB/sec total speed
+
+ # Running  3x3-bw-thread, "perf bench numa mem -p 3 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.081 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.054 secs average thread-runtime
+          0.202 % difference between max/avg runtime
+        103.759 GB data processed, per thread
+        933.828 GB data processed, total
+          0.194 nsecs/byte/thread runtime
+          5.167 GB/sec/thread speed
+         46.503 GB/sec total speed
+
+ # Running  5x5-bw-thread, "perf bench numa mem -p 5 -t 5 -P 512 -s 20 -zZ0q --thp  1"
+         20.049 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.058 secs average thread-runtime
+          2.615 % difference between max/avg runtime
+         37.224 GB data processed, per thread
+        930.601 GB data processed, total
+          0.539 nsecs/byte/thread runtime
+          1.857 GB/sec/thread speed
+         46.417 GB/sec total speed
+
+ # Running 2x16-bw-thread, "perf bench numa mem -p 2 -t 16 -P 512 -s 20 -zZ0q --thp  1"
+         20.118 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.079 secs average thread-runtime
+          2.778 % difference between max/avg runtime
+         29.367 GB data processed, per thread
+        939.745 GB data processed, total
+          0.685 nsecs/byte/thread runtime
+          1.460 GB/sec/thread speed
+         46.712 GB/sec total speed
+
+ # Running 1x32-bw-thread, "perf bench numa mem -p 1 -t 32 -P 2048 -s 20 -zZ0q --thp  1"
+         20.806 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.715 secs average thread-runtime
+          1.936 % difference between max/avg runtime
+         30.079 GB data processed, per thread
+        962.542 GB data processed, total
+          0.692 nsecs/byte/thread runtime
+          1.446 GB/sec/thread speed
+         46.264 GB/sec total speed
+
+ # Running numa02-bw, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1"
+         19.941 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.969 secs average thread-runtime
+          2.360 % difference between max/avg runtime
+         32.144 GB data processed, per thread
+       1028.609 GB data processed, total
+          0.620 nsecs/byte/thread runtime
+          1.612 GB/sec/thread speed
+         51.582 GB/sec total speed
+
+ # Running numa02-bw-NOTHP, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1 --thp -1"
+         19.978 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.979 secs average thread-runtime
+          2.447 % difference between max/avg runtime
+         30.243 GB data processed, per thread
+        967.777 GB data processed, total
+          0.661 nsecs/byte/thread runtime
+          1.514 GB/sec/thread speed
+         48.443 GB/sec total speed
+
+ # Running numa01-bw-thread, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1"
+         20.022 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.044 secs average thread-runtime
+          2.551 % difference between max/avg runtime
+         29.351 GB data processed, per thread
+        939.223 GB data processed, total
+          0.682 nsecs/byte/thread runtime
+          1.466 GB/sec/thread speed
+         46.911 GB/sec total speed
+
+ # Running numa01-bw-thread-NOTHP, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1 --thp -1"
+         20.095 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.023 secs average thread-runtime
+          2.724 % difference between max/avg runtime
+         27.004 GB data processed, per thread
+        864.142 GB data processed, total
+          0.744 nsecs/byte/thread runtime
+          1.344 GB/sec/thread speed
+         43.004 GB/sec total speed
+
+arm64 VM:
+
+# Running 'numa/mem' benchmark:
+
+ # Running main, "perf bench numa numa-mem"
+ #
+ # Running test on: Linux mike-arm 4.15.0-117-generic #118-Ubuntu SMP Fri Sep 4 20:05:59 UTC 2020 aarch64 aarch64 aarch64 GNU/Linux
+ #
+
+ # Running RAM-bw-local, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.007 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.004 secs average thread-runtime
+          0.017 % difference between max/avg runtime
+        702.913 GB data processed, per thread
+        702.913 GB data processed, total
+          0.028 nsecs/byte/thread runtime
+         35.133 GB/sec/thread speed
+         35.133 GB/sec total speed
+
+ # Running RAM-bw-local-NOTHP, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 0 -s 20 -zZq --thp  1 --no-data_rand_walk --thp -1"
+         20.058 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.001 secs average thread-runtime
+          0.145 % difference between max/avg runtime
+        575.013 GB data processed, per thread
+        575.013 GB data processed, total
+          0.035 nsecs/byte/thread runtime
+         28.667 GB/sec/thread speed
+         28.667 GB/sec total speed
+
+ # Running RAM-bw-remote, "perf bench numa mem -p 1 -t 1 -P 1024 -C 0 -M 1 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 1 nodes.
+
+ # Running RAM-bw-local-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 0x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+         20.030 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.015 secs average thread-runtime
+          0.075 % difference between max/avg runtime
+        649.173 GB data processed, per thread
+       1298.347 GB data processed, total
+          0.031 nsecs/byte/thread runtime
+         32.410 GB/sec/thread speed
+         64.820 GB/sec total speed
+
+ # Running RAM-bw-remote-2x, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,2 -M 1x2 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 1 nodes.
+
+ # Running RAM-bw-cross, "perf bench numa mem -p 2 -t 1 -P 1024 -C 0,8 -M 1,0 -s 20 -zZq --thp  1 --no-data_rand_walk"
+
+Test not applicable, system has only 8 CPUs.
+
+ # Running  1x3-convergence, "perf bench numa mem -p 1 -t 3 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.099 secs latency to NUMA-converge
+          0.099 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.096 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.076 GB data processed, per thread
+          3.228 GB data processed, total
+          0.092 nsecs/byte/thread runtime
+         10.870 GB/sec/thread speed
+         32.611 GB/sec total speed
+
+ # Running  1x4-convergence, "perf bench numa mem -p 1 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.966 secs latency to NUMA-converge
+          0.966 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.947 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          9.279 GB data processed, per thread
+         37.116 GB data processed, total
+          0.104 nsecs/byte/thread runtime
+          9.603 GB/sec/thread speed
+         38.412 GB/sec total speed
+
+ # Running  1x6-convergence, "perf bench numa mem -p 1 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.952 secs latency to NUMA-converge
+          0.952 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.911 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          6.959 GB data processed, per thread
+         41.753 GB data processed, total
+          0.137 nsecs/byte/thread runtime
+          7.306 GB/sec/thread speed
+         43.839 GB/sec total speed
+
+ # Running  2x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.812 secs latency to NUMA-converge
+          0.812 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.764 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          4.282 GB data processed, per thread
+         38.541 GB data processed, total
+          0.190 nsecs/byte/thread runtime
+          5.272 GB/sec/thread speed
+         47.452 GB/sec total speed
+
+ # Running  3x3-convergence, "perf bench numa mem -p 3 -t 3 -P 1020 -s 100 -zZ0qcm --thp  1"
+          0.866 secs latency to NUMA-converge
+          0.866 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.827 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          4.639 GB data processed, per thread
+         41.753 GB data processed, total
+          0.187 nsecs/byte/thread runtime
+          5.357 GB/sec/thread speed
+         48.210 GB/sec total speed
+
+ # Running  4x4-convergence, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.774 secs latency to NUMA-converge
+          0.774 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.764 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.488 GB data processed, per thread
+         39.806 GB data processed, total
+          0.311 nsecs/byte/thread runtime
+          3.214 GB/sec/thread speed
+         51.421 GB/sec total speed
+
+ # Running  4x4-convergence-NOTHP, "perf bench numa mem -p 4 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          0.728 secs latency to NUMA-converge
+          0.728 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.682 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.051 GB data processed, per thread
+         32.813 GB data processed, total
+          0.355 nsecs/byte/thread runtime
+          2.818 GB/sec/thread speed
+         45.084 GB/sec total speed
+
+ # Running  4x6-convergence, "perf bench numa mem -p 4 -t 6 -P 1020 -s 100 -zZ0qcm --thp  1"
+          1.044 secs latency to NUMA-converge
+          1.044 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.988 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.186 GB data processed, per thread
+         52.459 GB data processed, total
+          0.478 nsecs/byte/thread runtime
+          2.094 GB/sec/thread speed
+         50.260 GB/sec total speed
+
+ # Running  4x8-convergence, "perf bench numa mem -p 4 -t 8 -P 512 -s 100 -zZ0qcm --thp  1"
+          1.490 secs latency to NUMA-converge
+          1.490 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.501 secs average thread-runtime
+         16.453 % difference between max/avg runtime
+          2.471 GB data processed, per thread
+         79.074 GB data processed, total
+          0.603 nsecs/byte/thread runtime
+          1.658 GB/sec/thread speed
+         53.055 GB/sec total speed
+
+ # Running  8x4-convergence, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.956 secs latency to NUMA-converge
+          0.956 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.953 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.631 GB data processed, per thread
+         52.178 GB data processed, total
+          0.586 nsecs/byte/thread runtime
+          1.705 GB/sec/thread speed
+         54.571 GB/sec total speed
+
+ # Running  8x4-convergence-NOTHP, "perf bench numa mem -p 8 -t 4 -P 512 -s 100 -zZ0qcm --thp  1 --thp -1"
+          1.624 secs latency to NUMA-converge
+          1.624 secs slowest (max) thread-runtime
+          1.000 secs fastest (min) thread-runtime
+          1.552 secs average thread-runtime
+         19.213 % difference between max/avg runtime
+          2.353 GB data processed, per thread
+         75.309 GB data processed, total
+          0.690 nsecs/byte/thread runtime
+          1.449 GB/sec/thread speed
+         46.371 GB/sec total speed
+
+ # Running  3x1-convergence, "perf bench numa mem -p 3 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.417 secs latency to NUMA-converge
+          0.417 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.397 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          4.483 GB data processed, per thread
+         13.448 GB data processed, total
+          0.093 nsecs/byte/thread runtime
+         10.743 GB/sec/thread speed
+         32.228 GB/sec total speed
+
+ # Running  4x1-convergence, "perf bench numa mem -p 4 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.886 secs latency to NUMA-converge
+          0.886 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.859 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          8.203 GB data processed, per thread
+         32.813 GB data processed, total
+          0.108 nsecs/byte/thread runtime
+          9.256 GB/sec/thread speed
+         37.024 GB/sec total speed
+
+ # Running  8x1-convergence, "perf bench numa mem -p 8 -t 1 -P 512 -s 100 -zZ0qcm --thp  1"
+          0.850 secs latency to NUMA-converge
+          0.850 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.831 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          5.043 GB data processed, per thread
+         40.344 GB data processed, total
+          0.169 nsecs/byte/thread runtime
+          5.930 GB/sec/thread speed
+         47.439 GB/sec total speed
+
+ # Running 16x1-convergence, "perf bench numa mem -p 16 -t 1 -P 256 -s 100 -zZ0qcm --thp  1"
+          0.838 secs latency to NUMA-converge
+          0.838 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.839 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          2.627 GB data processed, per thread
+         42.040 GB data processed, total
+          0.319 nsecs/byte/thread runtime
+          3.135 GB/sec/thread speed
+         50.156 GB/sec total speed
+
+ # Running 32x1-convergence, "perf bench numa mem -p 32 -t 1 -P 128 -s 100 -zZ0qcm --thp  1"
+          0.625 secs latency to NUMA-converge
+          0.625 secs slowest (max) thread-runtime
+          0.000 secs fastest (min) thread-runtime
+          0.685 secs average thread-runtime
+         50.000 % difference between max/avg runtime
+          1.175 GB data processed, per thread
+         37.604 GB data processed, total
+          0.532 nsecs/byte/thread runtime
+          1.879 GB/sec/thread speed
+         60.130 GB/sec total speed
+
+ # Running  2x1-bw-process, "perf bench numa mem -p 2 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.062 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.058 secs average thread-runtime
+          0.154 % difference between max/avg runtime
+        261.174 GB data processed, per thread
+        522.348 GB data processed, total
+          0.077 nsecs/byte/thread runtime
+         13.019 GB/sec/thread speed
+         26.037 GB/sec total speed
+
+ # Running  3x1-bw-process, "perf bench numa mem -p 3 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.067 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.050 secs average thread-runtime
+          0.168 % difference between max/avg runtime
+        223.915 GB data processed, per thread
+        671.744 GB data processed, total
+          0.090 nsecs/byte/thread runtime
+         11.158 GB/sec/thread speed
+         33.475 GB/sec total speed
+
+ # Running  4x1-bw-process, "perf bench numa mem -p 4 -t 1 -P 1024 -s 20 -zZ0q --thp  1"
+         20.024 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.015 secs average thread-runtime
+          0.059 % difference between max/avg runtime
+        188.894 GB data processed, per thread
+        755.578 GB data processed, total
+          0.106 nsecs/byte/thread runtime
+          9.434 GB/sec/thread speed
+         37.734 GB/sec total speed
+
+ # Running  8x1-bw-process, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1"
+         20.080 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.064 secs average thread-runtime
+          0.200 % difference between max/avg runtime
+        121.772 GB data processed, per thread
+        974.172 GB data processed, total
+          0.165 nsecs/byte/thread runtime
+          6.064 GB/sec/thread speed
+         48.513 GB/sec total speed
+
+ # Running  8x1-bw-process-NOTHP, "perf bench numa mem -p 8 -t 1 -P  512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.118 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.031 secs average thread-runtime
+          0.293 % difference between max/avg runtime
+        111.551 GB data processed, per thread
+        892.408 GB data processed, total
+          0.180 nsecs/byte/thread runtime
+          5.545 GB/sec/thread speed
+         44.359 GB/sec total speed
+
+ # Running 16x1-bw-process, "perf bench numa mem -p 16 -t 1 -P 256 -s 20 -zZ0q --thp  1"
+         20.029 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.029 secs average thread-runtime
+          0.072 % difference between max/avg runtime
+         61.021 GB data processed, per thread
+        976.341 GB data processed, total
+          0.328 nsecs/byte/thread runtime
+          3.047 GB/sec/thread speed
+         48.747 GB/sec total speed
+
+ # Running  4x1-bw-thread, "perf bench numa mem -p 1 -t 4 -T 256 -s 20 -zZ0q --thp  1"
+         20.014 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.007 secs average thread-runtime
+          0.034 % difference between max/avg runtime
+        193.624 GB data processed, per thread
+        774.497 GB data processed, total
+          0.103 nsecs/byte/thread runtime
+          9.675 GB/sec/thread speed
+         38.698 GB/sec total speed
+
+ # Running  8x1-bw-thread, "perf bench numa mem -p 1 -t 8 -T 256 -s 20 -zZ0q --thp  1"
+         20.025 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.009 secs average thread-runtime
+          0.063 % difference between max/avg runtime
+        122.009 GB data processed, per thread
+        976.071 GB data processed, total
+          0.164 nsecs/byte/thread runtime
+          6.093 GB/sec/thread speed
+         48.742 GB/sec total speed
+
+ # Running 16x1-bw-thread, "perf bench numa mem -p 1 -t 16 -T 128 -s 20 -zZ0q --thp  1"
+         20.005 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.015 secs average thread-runtime
+          2.512 % difference between max/avg runtime
+         61.293 GB data processed, per thread
+        980.681 GB data processed, total
+          0.326 nsecs/byte/thread runtime
+          3.064 GB/sec/thread speed
+         49.022 GB/sec total speed
+
+ # Running 32x1-bw-thread, "perf bench numa mem -p 1 -t 32 -T 64 -s 20 -zZ0q --thp  1"
+         19.929 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.972 secs average thread-runtime
+          2.330 % difference between max/avg runtime
+         31.340 GB data processed, per thread
+       1002.869 GB data processed, total
+          0.636 nsecs/byte/thread runtime
+          1.573 GB/sec/thread speed
+         50.323 GB/sec total speed
+
+ # Running  2x3-bw-thread, "perf bench numa mem -p 2 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.049 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.030 secs average thread-runtime
+          0.123 % difference between max/avg runtime
+        151.514 GB data processed, per thread
+        909.084 GB data processed, total
+          0.132 nsecs/byte/thread runtime
+          7.557 GB/sec/thread speed
+         45.343 GB/sec total speed
+
+ # Running  4x4-bw-thread, "perf bench numa mem -p 4 -t 4 -P 512 -s 20 -zZ0q --thp  1"
+         20.048 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.024 secs average thread-runtime
+          2.614 % difference between max/avg runtime
+         64.584 GB data processed, per thread
+       1033.343 GB data processed, total
+          0.310 nsecs/byte/thread runtime
+          3.221 GB/sec/thread speed
+         51.543 GB/sec total speed
+
+ # Running  4x6-bw-thread, "perf bench numa mem -p 4 -t 6 -P 512 -s 20 -zZ0q --thp  1"
+         20.044 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.040 secs average thread-runtime
+          2.605 % difference between max/avg runtime
+         41.173 GB data processed, per thread
+        988.158 GB data processed, total
+          0.487 nsecs/byte/thread runtime
+          2.054 GB/sec/thread speed
+         49.298 GB/sec total speed
+
+ # Running  4x8-bw-thread, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1"
+         20.078 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.093 secs average thread-runtime
+          2.683 % difference between max/avg runtime
+         30.796 GB data processed, per thread
+        985.469 GB data processed, total
+          0.652 nsecs/byte/thread runtime
+          1.534 GB/sec/thread speed
+         49.083 GB/sec total speed
+
+ # Running  4x8-bw-thread-NOTHP, "perf bench numa mem -p 4 -t 8 -P 512 -s 20 -zZ0q --thp  1 --thp -1"
+         20.124 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.075 secs average thread-runtime
+          2.792 % difference between max/avg runtime
+         28.543 GB data processed, per thread
+        913.387 GB data processed, total
+          0.705 nsecs/byte/thread runtime
+          1.418 GB/sec/thread speed
+         45.388 GB/sec total speed
+
+ # Running  3x3-bw-thread, "perf bench numa mem -p 3 -t 3 -P 512 -s 20 -zZ0q --thp  1"
+         20.056 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.040 secs average thread-runtime
+          0.140 % difference between max/avg runtime
+        111.529 GB data processed, per thread
+       1003.758 GB data processed, total
+          0.180 nsecs/byte/thread runtime
+          5.561 GB/sec/thread speed
+         50.048 GB/sec total speed
+
+ # Running  5x5-bw-thread, "perf bench numa mem -p 5 -t 5 -P 512 -s 20 -zZ0q --thp  1"
+         20.065 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.076 secs average thread-runtime
+          2.654 % difference between max/avg runtime
+         39.290 GB data processed, per thread
+        982.241 GB data processed, total
+          0.511 nsecs/byte/thread runtime
+          1.958 GB/sec/thread speed
+         48.952 GB/sec total speed
+
+ # Running 2x16-bw-thread, "perf bench numa mem -p 2 -t 16 -P 512 -s 20 -zZ0q --thp  1"
+         20.096 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.118 secs average thread-runtime
+          0.239 % difference between max/avg runtime
+         31.199 GB data processed, per thread
+        998.379 GB data processed, total
+          0.644 nsecs/byte/thread runtime
+          1.553 GB/sec/thread speed
+         49.681 GB/sec total speed
+
+ # Running 1x32-bw-thread, "perf bench numa mem -p 1 -t 32 -P 2048 -s 20 -zZ0q --thp  1"
+         20.514 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.479 secs average thread-runtime
+          1.252 % difference between max/avg runtime
+         31.355 GB data processed, per thread
+       1003.365 GB data processed, total
+          0.654 nsecs/byte/thread runtime
+          1.529 GB/sec/thread speed
+         48.912 GB/sec total speed
+
+ # Running numa02-bw, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1"
+         19.931 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.977 secs average thread-runtime
+          2.337 % difference between max/avg runtime
+         32.384 GB data processed, per thread
+       1036.291 GB data processed, total
+          0.615 nsecs/byte/thread runtime
+          1.625 GB/sec/thread speed
+         51.993 GB/sec total speed
+
+ # Running numa02-bw-NOTHP, "perf bench numa mem -p 1 -t 32 -T 32 -s 20 -zZ0q --thp  1 --thp -1"
+         20.024 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         19.981 secs average thread-runtime
+          2.556 % difference between max/avg runtime
+         31.102 GB data processed, per thread
+        995.252 GB data processed, total
+          0.644 nsecs/byte/thread runtime
+          1.553 GB/sec/thread speed
+         49.704 GB/sec total speed
+
+ # Running numa01-bw-thread, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1"
+         20.003 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.013 secs average thread-runtime
+          2.507 % difference between max/avg runtime
+         30.597 GB data processed, per thread
+        979.091 GB data processed, total
+          0.654 nsecs/byte/thread runtime
+          1.530 GB/sec/thread speed
+         48.947 GB/sec total speed
+
+ # Running numa01-bw-thread-NOTHP, "perf bench numa mem -p 2 -t 16 -T 192 -s 20 -zZ0q --thp  1 --thp -1"
+         20.202 secs slowest (max) thread-runtime
+         19.000 secs fastest (min) thread-runtime
+         20.042 secs average thread-runtime
+          2.975 % difference between max/avg runtime
+         28.446 GB data processed, per thread
+        910.284 GB data processed, total
+          0.710 nsecs/byte/thread runtime
+          1.408 GB/sec/thread speed
+         45.059 GB/sec total speed
+
+
+Results from "perf bench futex hash":
+====================================
+
+Driver machine: 
+
+# Running 'futex/hash' benchmark:
+Run summary [PID 11870]: 40 threads, each operating on 1024 [private] futexes for 10 secs.
+
+[thread  0] futexes: 0x55bc1d552360 ... 0x55bc1d55335c [ 1075916 ops/sec ]
+[thread  1] futexes: 0x55bc1d553590 ... 0x55bc1d55458c [ 1073971 ops/sec ]
+[thread  2] futexes: 0x55bc1d554730 ... 0x55bc1d55572c [ 1075916 ops/sec ]
+[thread  3] futexes: 0x55bc1d5558d0 ... 0x55bc1d5568cc [ 1073971 ops/sec ]
+[thread  4] futexes: 0x55bc1d556a70 ... 0x55bc1d557a6c [ 1073049 ops/sec ]
+[thread  5] futexes: 0x55bc1d557c10 ... 0x55bc1d558c0c [ 1073766 ops/sec ]
+[thread  6] futexes: 0x55bc1d558db0 ... 0x55bc1d559dac [ 1079910 ops/sec ]
+[thread  7] futexes: 0x55bc1d559f50 ... 0x55bc1d55af4c [ 1080524 ops/sec ]
+[thread  8] futexes: 0x55bc1d55b0f0 ... 0x55bc1d55c0ec [ 1083699 ops/sec ]
+[thread  9] futexes: 0x55bc1d55c290 ... 0x55bc1d55d28c [ 1079705 ops/sec ]
+[thread 10] futexes: 0x55bc1d55d430 ... 0x55bc1d55e42c [ 1086361 ops/sec ]
+[thread 11] futexes: 0x55bc1d55e5d0 ... 0x55bc1d55f5cc [ 1081651 ops/sec ]
+[thread 12] futexes: 0x55bc1d55f770 ... 0x55bc1d56076c [ 1085235 ops/sec ]
+[thread 13] futexes: 0x55bc1d560910 ... 0x55bc1d56190c [ 1082777 ops/sec ]
+[thread 14] futexes: 0x55bc1d561ab0 ... 0x55bc1d562aac [ 1079193 ops/sec ]
+[thread 15] futexes: 0x55bc1d562c50 ... 0x55bc1d563c4c [ 1078067 ops/sec ]
+[thread 16] futexes: 0x55bc1d563df0 ... 0x55bc1d564dec [ 1080729 ops/sec ]
+[thread 17] futexes: 0x55bc1d564f90 ... 0x55bc1d565f8c [ 1083596 ops/sec ]
+[thread 18] futexes: 0x55bc1d566130 ... 0x55bc1d56712c [ 1079808 ops/sec ]
+[thread 19] futexes: 0x55bc1d5672d0 ... 0x55bc1d5682cc [ 1084416 ops/sec ]
+[thread 20] futexes: 0x55bc1d568470 ... 0x55bc1d56946c [ 1078784 ops/sec ]
+[thread 21] futexes: 0x55bc1d569610 ... 0x55bc1d56a60c [ 1073971 ops/sec ]
+[thread 22] futexes: 0x55bc1d56a7b0 ... 0x55bc1d56b7ac [ 1073459 ops/sec ]
+[thread 23] futexes: 0x55bc1d56b950 ... 0x55bc1d56c94c [ 1074278 ops/sec ]
+[thread 24] futexes: 0x55bc1d56caf0 ... 0x55bc1d56daec [ 1073664 ops/sec ]
+[thread 25] futexes: 0x55bc1d56dc90 ... 0x55bc1d56ec8c [ 1074176 ops/sec ]
+[thread 26] futexes: 0x55bc1d56ee30 ... 0x55bc1d56fe2c [ 1084723 ops/sec ]
+[thread 27] futexes: 0x55bc1d56ffd0 ... 0x55bc1d570fcc [ 1080832 ops/sec ]
+[thread 28] futexes: 0x55bc1d571170 ... 0x55bc1d57216c [ 1084723 ops/sec ]
+[thread 29] futexes: 0x55bc1d572310 ... 0x55bc1d57330c [ 1080832 ops/sec ]
+[thread 30] futexes: 0x55bc1d5734b0 ... 0x55bc1d5744ac [ 1087590 ops/sec ]
+[thread 31] futexes: 0x55bc1d574650 ... 0x55bc1d57564c [ 1083084 ops/sec ]
+[thread 32] futexes: 0x55bc1d5757f0 ... 0x55bc1d5767ec [ 1085644 ops/sec ]
+[thread 33] futexes: 0x55bc1d576990 ... 0x55bc1d57798c [ 1081036 ops/sec ]
+[thread 34] futexes: 0x55bc1d577b30 ... 0x55bc1d578b2c [ 1079910 ops/sec ]
+[thread 35] futexes: 0x55bc1d578cd0 ... 0x55bc1d579ccc [ 1088307 ops/sec ]
+[thread 36] futexes: 0x55bc1d579e70 ... 0x55bc1d57ae6c [ 1078988 ops/sec ]
+[thread 37] futexes: 0x55bc1d57b010 ... 0x55bc1d57c00c [ 1083699 ops/sec ]
+[thread 38] futexes: 0x55bc1d57c1b0 ... 0x55bc1d57d1ac [ 1081958 ops/sec ]
+[thread 39] futexes: 0x55bc1d57d350 ... 0x55bc1d57e34c [ 1085030 ops/sec ]
+
+Averaged 1080173 operations/sec (+- 0.06%), total secs = 10
+
+Client VM:
+
+# Running 'futex/hash' benchmark:
+Run summary [PID 28651]: 4 threads, each operating on 1024 [private] futexes for 10 secs.
+
+[thread  0] futexes: 0xaaaae7869bf0 ... 0xaaaae786abec [ 3260211 ops/sec ]
+[thread  1] futexes: 0xaaaae786ad90 ... 0xaaaae786bd8c [ 3295744 ops/sec ]
+[thread  2] futexes: 0xaaaae786bf30 ... 0xaaaae786cf2c [ 3242700 ops/sec ]
+[thread  3] futexes: 0xaaaae786d0d0 ... 0xaaaae786e0cc [ 3325849 ops/sec ]
+
+Averaged 3281126 operations/sec (+- 0.57%), total secs = 10
+
+x86_64 VM:
+
+# Running 'futex/hash' benchmark:
+Run summary [PID 4581]: 8 threads, each operating on 1024 [private] futexes for 10 secs.
+
+[thread  0] futexes: 0x557016924f50 ... 0x557016925f4c [ 5026099 ops/sec ]
+[thread  1] futexes: 0x5570169260f0 ... 0x5570169270ec [ 4962201 ops/sec ]
+[thread  2] futexes: 0x557016927290 ... 0x55701692828c [ 5032140 ops/sec ]
+[thread  3] futexes: 0x557016928430 ... 0x55701692942c [ 5020672 ops/sec ]
+[thread  4] futexes: 0x5570169295d0 ... 0x55701692a5cc [ 5053644 ops/sec ]
+[thread  5] futexes: 0x55701692a770 ... 0x55701692b76c [ 5048012 ops/sec ]
+[thread  6] futexes: 0x55701692b910 ... 0x55701692c90c [ 5005926 ops/sec ]
+[thread  7] futexes: 0x55701692cab0 ... 0x55701692daac [ 5026201 ops/sec ]
+
+Averaged 5021861 operations/sec (+- 0.20%), total secs = 10
+
+arm64 VM:
+
+# Running 'futex/hash' benchmark:
+Run summary [PID 3487]: 8 threads, each operating on 1024 [private] futexes for 10 secs.
+
+[thread  0] futexes: 0xaaaacb399c70 ... 0xaaaacb39ac6c [ 3265945 ops/sec ]
+[thread  1] futexes: 0xaaaacb39ae10 ... 0xaaaacb39be0c [ 3268505 ops/sec ]
+[thread  2] futexes: 0xaaaacb39bfb0 ... 0xaaaacb39cfac [ 3281510 ops/sec ]
+[thread  3] futexes: 0xaaaacb39d150 ... 0xaaaacb39e14c [ 3268096 ops/sec ]
+[thread  4] futexes: 0xaaaacb39e2f0 ... 0xaaaacb39f2ec [ 3271270 ops/sec ]
+[thread  5] futexes: 0xaaaacb39f490 ... 0xaaaacb3a048c [ 3274342 ops/sec ]
+[thread  6] futexes: 0xaaaacb3a0630 ... 0xaaaacb3a162c [ 3273932 ops/sec ]
+[thread  7] futexes: 0xaaaacb3a17d0 ... 0xaaaacb3a27cc [ 3274240 ops/sec ]
+
+Averaged 3272230 operations/sec (+- 0.05%), total secs = 10
+
+
+Results from "perf bench futex wake":
+====================================
+
+Driver machine: 
+
+# Running 'futex/wake' benchmark:
+Run summary [PID 11915]: blocking on 40 threads (at [private] futex 0x5584a29017ac), waking up 1 at a time.
+
+[Run 1]: Wokeup 40 of 40 threads in 0.1160 ms
+[Run 2]: Wokeup 40 of 40 threads in 0.1160 ms
+[Run 3]: Wokeup 40 of 40 threads in 0.1220 ms
+[Run 4]: Wokeup 40 of 40 threads in 0.1360 ms
+[Run 5]: Wokeup 40 of 40 threads in 0.1460 ms
+[Run 6]: Wokeup 40 of 40 threads in 0.1460 ms
+[Run 7]: Wokeup 40 of 40 threads in 0.1430 ms
+[Run 8]: Wokeup 40 of 40 threads in 0.1240 ms
+[Run 9]: Wokeup 40 of 40 threads in 0.1460 ms
+[Run 10]: Wokeup 40 of 40 threads in 0.1260 ms
+Wokeup 40 of 40 threads in 0.1321 ms (+-3.02%)
+
+Client VM:
+
+# Running 'futex/wake' benchmark:
+Run summary [PID 29036]: blocking on 4 threads (at [private] futex 0xaaaac6ec5704), waking up 1 at a time.
+
+[Run 1]: Wokeup 4 of 4 threads in 0.0150 ms
+[Run 2]: Wokeup 4 of 4 threads in 0.0150 ms
+[Run 3]: Wokeup 4 of 4 threads in 0.0140 ms
+[Run 4]: Wokeup 4 of 4 threads in 0.0140 ms
+[Run 5]: Wokeup 4 of 4 threads in 0.0160 ms
+[Run 6]: Wokeup 4 of 4 threads in 0.0130 ms
+[Run 7]: Wokeup 4 of 4 threads in 0.0150 ms
+[Run 8]: Wokeup 4 of 4 threads in 0.0150 ms
+[Run 9]: Wokeup 4 of 4 threads in 0.0140 ms
+[Run 10]: Wokeup 4 of 4 threads in 0.0170 ms
+Wokeup 4 of 4 threads in 0.0148 ms (+-2.43%)
+
+x86_64 VM:
+
+# Running 'futex/wake' benchmark:
+Run summary [PID 4594]: blocking on 8 threads (at [private] futex 0x564fa90357ac), waking up 1 at a time.
+
+[Run 1]: Wokeup 8 of 8 threads in 0.0410 ms
+[Run 2]: Wokeup 8 of 8 threads in 0.0430 ms
+[Run 3]: Wokeup 8 of 8 threads in 0.0440 ms
+[Run 4]: Wokeup 8 of 8 threads in 0.0430 ms
+[Run 5]: Wokeup 8 of 8 threads in 0.0460 ms
+[Run 6]: Wokeup 8 of 8 threads in 0.0540 ms
+[Run 7]: Wokeup 8 of 8 threads in 0.0350 ms
+[Run 8]: Wokeup 8 of 8 threads in 0.0430 ms
+[Run 9]: Wokeup 8 of 8 threads in 0.0410 ms
+[Run 10]: Wokeup 8 of 8 threads in 0.0430 ms
+Wokeup 8 of 8 threads in 0.0433 ms (+-3.46%)
+
+arm64 VM:
+
+# Running 'futex/wake' benchmark:
+Run summary [PID 3500]: blocking on 8 threads (at [private] futex 0xaaaad431e704), waking up 1 at a time.
+
+[Run 1]: Wokeup 8 of 8 threads in 0.0430 ms
+[Run 2]: Wokeup 8 of 8 threads in 0.0470 ms
+[Run 3]: Wokeup 8 of 8 threads in 0.0380 ms
+[Run 4]: Wokeup 8 of 8 threads in 0.0470 ms
+[Run 5]: Wokeup 8 of 8 threads in 0.0360 ms
+[Run 6]: Wokeup 8 of 8 threads in 0.0460 ms
+[Run 7]: Wokeup 8 of 8 threads in 0.0380 ms
+[Run 8]: Wokeup 8 of 8 threads in 0.0400 ms
+[Run 9]: Wokeup 8 of 8 threads in 0.0400 ms
+[Run 10]: Wokeup 8 of 8 threads in 0.0440 ms
+Wokeup 8 of 8 threads in 0.0419 ms (+-3.05%)
+
+
+Results from "perf bench futex wake-parallel":
+=============================================
+
+Driver machine: 
+
+# Running 'futex/wake-parallel' benchmark:
+Run summary [PID 12321]: blocking on 40 threads (at [private] futex 0x55a05d75a920), 40 threads waking up 1 at a time.
+
+[Run 1]: Avg per-thread latency (waking 1/40 threads) in 0.0084 ms (+-30.63%)
+[Run 2]: Avg per-thread latency (waking 1/40 threads) in 0.0063 ms (+-17.94%)
+[Run 3]: Avg per-thread latency (waking 1/40 threads) in 0.0061 ms (+-5.05%)
+[Run 4]: Avg per-thread latency (waking 1/40 threads) in 0.0045 ms (+-5.99%)
+[Run 5]: Avg per-thread latency (waking 1/40 threads) in 0.0054 ms (+-5.94%)
+[Run 6]: Avg per-thread latency (waking 1/40 threads) in 0.0060 ms (+-24.29%)
+[Run 7]: Avg per-thread latency (waking 1/40 threads) in 0.0054 ms (+-7.32%)
+[Run 8]: Avg per-thread latency (waking 1/40 threads) in 0.0050 ms (+-4.75%)
+[Run 9]: Avg per-thread latency (waking 1/40 threads) in 0.0057 ms (+-5.37%)
+[Run 10]: Avg per-thread latency (waking 1/40 threads) in 0.0050 ms (+-6.32%)
+Avg per-thread latency (waking 1/40 threads) in 0.0058 ms (+-5.67%)
+
+Client VM:
+
+# Running 'futex/wake-parallel' benchmark:
+Run summary [PID 29268]: blocking on 4 threads (at [private] futex 0xaaaadf0e0824), 4 threads waking up 1 at a time.
+
+[Run 1]: Avg per-thread latency (waking 1/4 threads) in 0.0045 ms (+-26.45%)
+[Run 2]: Avg per-thread latency (waking 1/4 threads) in 0.0040 ms (+-35.36%)
+[Run 3]: Avg per-thread latency (waking 1/4 threads) in 0.0043 ms (+-20.09%)
+[Run 4]: Avg per-thread latency (waking 1/4 threads) in 0.0300 ms (+-22.15%)
+[Run 5]: Avg per-thread latency (waking 1/4 threads) in 0.0065 ms (+-31.09%)
+[Run 6]: Avg per-thread latency (waking 1/4 threads) in 0.0182 ms (+-43.17%)
+[Run 7]: Avg per-thread latency (waking 1/4 threads) in 0.0047 ms (+-26.32%)
+[Run 8]: Avg per-thread latency (waking 1/4 threads) in 0.0050 ms (+-21.60%)
+[Run 9]: Avg per-thread latency (waking 1/4 threads) in 0.0043 ms (+-22.27%)
+[Run 10]: Avg per-thread latency (waking 1/4 threads) in 0.0100 ms (+-53.39%)
+Avg per-thread latency (waking 1/4 threads) in 0.0092 ms (+-18.34%)
+
+x86_64 VM:
+
+# Running 'futex/wake-parallel' benchmark:
+Run summary [PID 4677]: blocking on 8 threads (at [private] futex 0x55d3e26f0920), 8 threads waking up 1 at a time.
+
+[Run 1]: Avg per-thread latency (waking 1/8 threads) in 0.0059 ms (+-14.54%)
+[Run 2]: Avg per-thread latency (waking 1/8 threads) in 0.0064 ms (+-19.42%)
+[Run 3]: Avg per-thread latency (waking 1/8 threads) in 0.0059 ms (+-20.71%)
+[Run 4]: Avg per-thread latency (waking 1/8 threads) in 0.0047 ms (+-15.79%)
+[Run 5]: Avg per-thread latency (waking 1/8 threads) in 0.0045 ms (+-15.14%)
+[Run 6]: Avg per-thread latency (waking 1/8 threads) in 0.0059 ms (+-12.22%)
+[Run 7]: Avg per-thread latency (waking 1/8 threads) in 0.0057 ms (+-14.61%)
+[Run 8]: Avg per-thread latency (waking 1/8 threads) in 0.0050 ms (+-14.14%)
+[Run 9]: Avg per-thread latency (waking 1/8 threads) in 0.0084 ms (+-44.62%)
+[Run 10]: Avg per-thread latency (waking 1/8 threads) in 0.0063 ms (+-15.34%)
+Avg per-thread latency (waking 1/8 threads) in 0.0059 ms (+-7.68%)
+
+arm64 VM:
+
+# Running 'futex/wake-parallel' benchmark:
+Run summary [PID 3584]: blocking on 8 threads (at [private] futex 0xaaaaae08a824), 8 threads waking up 1 at a time.
+
+[Run 1]: Avg per-thread latency (waking 1/8 threads) in 0.0067 ms (+-10.75%)
+[Run 2]: Avg per-thread latency (waking 1/8 threads) in 0.0073 ms (+-9.31%)
+[Run 3]: Avg per-thread latency (waking 1/8 threads) in 0.0055 ms (+-14.58%)
+[Run 4]: Avg per-thread latency (waking 1/8 threads) in 0.0061 ms (+-13.60%)
+[Run 5]: Avg per-thread latency (waking 1/8 threads) in 0.0115 ms (+-38.68%)
+[Run 6]: Avg per-thread latency (waking 1/8 threads) in 0.0101 ms (+-29.89%)
+[Run 7]: Avg per-thread latency (waking 1/8 threads) in 0.0063 ms (+-13.44%)
+[Run 8]: Avg per-thread latency (waking 1/8 threads) in 0.0056 ms (+-14.62%)
+[Run 9]: Avg per-thread latency (waking 1/8 threads) in 0.0051 ms (+-14.49%)
+[Run 10]: Avg per-thread latency (waking 1/8 threads) in 0.0056 ms (+-16.78%)
+Avg per-thread latency (waking 1/8 threads) in 0.0070 ms (+-8.51%)
+
+
+Results from "perf bench futex requeue":
+=======================================
+
+Driver machine: 
+
+# Running 'futex/requeue' benchmark:
+Run summary [PID 13124]: Requeuing 40 threads (from [private] 0x55dc5a559a9c to 0x55dc5a559a98), 1 at a time.
+
+[Run 1]: Requeued 40 of 40 threads in 0.0670 ms
+[Run 2]: Requeued 40 of 40 threads in 0.0640 ms
+[Run 3]: Requeued 40 of 40 threads in 0.0640 ms
+[Run 4]: Requeued 40 of 40 threads in 0.0630 ms
+[Run 5]: Requeued 40 of 40 threads in 0.0630 ms
+[Run 6]: Requeued 40 of 40 threads in 0.0630 ms
+[Run 7]: Requeued 40 of 40 threads in 0.0640 ms
+[Run 8]: Requeued 40 of 40 threads in 0.0630 ms
+[Run 9]: Requeued 40 of 40 threads in 0.0630 ms
+[Run 10]: Requeued 40 of 40 threads in 0.0640 ms
+Requeued 40 of 40 threads in 0.0638 ms (+-0.61%)
+
+Client VM:
+
+# Running 'futex/requeue' benchmark:
+Run summary [PID 29560]: Requeuing 4 threads (from [private] 0xaaaaccaa3954 to 0xaaaaccaa396c), 1 at a time.
+
+[Run 1]: Requeued 4 of 4 threads in 0.0030 ms
+[Run 2]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 3]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 4]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 5]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 6]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 7]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 8]: Requeued 4 of 4 threads in 0.0030 ms
+[Run 9]: Requeued 4 of 4 threads in 0.0020 ms
+[Run 10]: Requeued 4 of 4 threads in 0.0010 ms
+Requeued 4 of 4 threads in 0.0021 ms (+-8.55%)
+
+x86_64 VM:
+
+# Running 'futex/requeue' benchmark:
+Run summary [PID 4840]: Requeuing 8 threads (from [private] 0x5603bf347a9c to 0x5603bf347a98), 1 at a time.
+
+[Run 1]: Requeued 8 of 8 threads in 0.0030 ms
+[Run 2]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 3]: Requeued 8 of 8 threads in 0.0030 ms
+[Run 4]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 5]: Requeued 8 of 8 threads in 0.0030 ms
+[Run 6]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 7]: Requeued 8 of 8 threads in 0.0060 ms
+[Run 8]: Requeued 8 of 8 threads in 0.0050 ms
+[Run 9]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 10]: Requeued 8 of 8 threads in 0.0050 ms
+Requeued 8 of 8 threads in 0.0041 ms (+-7.67%)
+
+arm64 VM:
+
+# Running 'futex/requeue' benchmark:
+Run summary [PID 3749]: Requeuing 8 threads (from [private] 0xaaaad39f8954 to 0xaaaad39f896c), 1 at a time.
+
+[Run 1]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 2]: Requeued 8 of 8 threads in 0.0050 ms
+[Run 3]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 4]: Requeued 8 of 8 threads in 0.0050 ms
+[Run 5]: Requeued 8 of 8 threads in 0.0050 ms
+[Run 6]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 7]: Requeued 8 of 8 threads in 0.0050 ms
+[Run 8]: Requeued 8 of 8 threads in 0.0050 ms
+[Run 9]: Requeued 8 of 8 threads in 0.0040 ms
+[Run 10]: Requeued 8 of 8 threads in 0.0050 ms
+Requeued 8 of 8 threads in 0.0046 ms (+-3.55%)
+
+
+Results from "perf bench futex lock-pi":
+=======================================
+
+Driver machine: 
+
+# Running 'futex/lock-pi' benchmark:
+Run summary [PID 13528]: 40 threads doing pi lock/unlock pairing for 10 secs.
+
+[thread   0] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   1] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   2] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   3] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   4] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   5] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   6] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   7] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   8] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread   9] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  10] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  11] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  12] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  13] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  14] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  15] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  16] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  17] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  18] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  19] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  20] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  21] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  22] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  23] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  24] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  25] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  26] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  27] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  28] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  29] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  30] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  31] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  32] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  33] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  34] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  35] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  36] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  37] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  38] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+[thread  39] futex: 0x55a35c5b3ba0 [ 245 ops/sec ]
+
+Averaged 245 operations/sec (+- 0.00%), total secs = 10
+
+Client VM:
+
+# Running 'futex/lock-pi' benchmark:
+Run summary [PID 29784]: 4 threads doing pi lock/unlock pairing for 10 secs.
+
+[thread   0] futex: 0xaaaacebcaabc [ 4200 ops/sec ]
+[thread   1] futex: 0xaaaacebcaabc [ 4200 ops/sec ]
+[thread   2] futex: 0xaaaacebcaabc [ 4200 ops/sec ]
+[thread   3] futex: 0xaaaacebcaabc [ 4200 ops/sec ]
+
+Averaged 4200 operations/sec (+- 0.00%), total secs = 10
+
+x86_64 VM:
+
+# Running 'futex/lock-pi' benchmark:
+Run summary [PID 4923]: 8 threads doing pi lock/unlock pairing for 10 secs.
+
+[thread   0] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   1] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   2] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   3] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   4] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   5] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   6] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+[thread   7] futex: 0x55c92b45bba0 [ 1795 ops/sec ]
+
+Averaged 1795 operations/sec (+- 0.00%), total secs = 10
+
+arm64 VM:
+
+# Running 'futex/lock-pi' benchmark:
+Run summary [PID 3832]: 8 threads doing pi lock/unlock pairing for 10 secs.
+
+[thread   0] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   1] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   2] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   3] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   4] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   5] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   6] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+[thread   7] futex: 0xaaaab129cabc [ 2080 ops/sec ]
+
+Averaged 2080 operations/sec (+- 0.00%), total secs = 10
+

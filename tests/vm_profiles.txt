@@ -1,0 +1,1440 @@
+*************************************
+*
+*  Profile the VMs used for testing
+*
+*************************************
+
+Purpose:
+=======
+
+Run various profiling tools against the VMs used for testing.
+
+
+Machines:
+========
+
+Driver machine: 
+
+Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-112-generic x86_64)
+Located in Santa Clara, California
+
+Client VM:
+
+Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic aarch64)
+Located in Hong Kong
+
+x86_64 VM:
+
+Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic x86_64)
+Located in Hong Kong
+
+arm64 VM:
+
+Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-112-generic aarch64)
+Located in Hong Kong
+
+
+System settings:
+===============
+
+    $ sysctl net.core.somaxconn
+net.core.somaxconn = 1024
+
+    $ sudo sysctl -w net.core.somaxconn=65535 
+net.core.somaxconn = 65535
+
+    $ sysctl net.ipv4.tcp_max_syn_backlog
+net.ipv4.tcp_max_syn_backlog = 1024
+
+    $ sudo sysctl -w net.ipv4.tcp_max_syn_backlog=65535
+net.ipv4.tcp_max_syn_backlog = 65535
+
+
+Results from "lscpu":
+===================
+
+Driver machine: 
+
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              40
+On-line CPU(s) list: 0-39
+Thread(s) per core:  2
+Core(s) per socket:  10
+Socket(s):           2
+NUMA node(s):        2
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               63
+Model name:          Intel(R) Xeon(R) CPU E5-2687W v3 @ 3.10GHz
+Stepping:            2
+CPU MHz:             1201.343
+CPU max MHz:         3500.0000
+CPU min MHz:         1200.0000
+BogoMIPS:            6200.03
+Virtualization:      VT-x
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            25600K
+NUMA node0 CPU(s):   0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38
+NUMA node1 CPU(s):   1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca
+                     cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm
+                     pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon
+                     pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf
+                     pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3
+                     sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe
+                     popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm
+                     abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp
+                     tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust
+                     bmi1 avx2 smep bmi2 erms invpcid cqm xsaveopt cqm_llc
+                     cqm_occup_llc dtherm ida arat pln pts md_clear flush_l1d
+
+Client VM:
+
+Architecture:        aarch64
+Byte Order:          Little Endian
+CPU(s):              4
+On-line CPU(s) list: 0-3
+Thread(s) per core:  1
+Core(s) per socket:  4
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           0x48
+Model:               0
+Stepping:            0x1
+BogoMIPS:            200.00
+L1d cache:           64K
+L1i cache:           64K
+L2 cache:            512K
+L3 cache:            32768K
+NUMA node0 CPU(s):   0-3
+Flags:               fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp
+                     asimdhp cpuid asimdrdm jscvt fcma dcpop asimddp asimdfhm
+
+x86_64 VM:
+
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              8
+On-line CPU(s) list: 0-7
+Thread(s) per core:  2
+Core(s) per socket:  4
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               85
+Model name:          Intel(R) Xeon(R) Gold 6266C CPU @ 3.00GHz
+Stepping:            7
+CPU MHz:             3000.000
+BogoMIPS:            6000.00
+Hypervisor vendor:   KVM
+Virtualization type: full
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            1024K
+L3 cache:            30976K
+NUMA node0 CPU(s):   0-7
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca
+                     cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx
+                     pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology
+                     nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma
+                     cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer
+                     aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch
+                     invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase
+                     tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f
+                     avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw
+                     avx512vl xsaveopt xsavec xgetbv1 arat avx512_vnni md_clear
+                     flush_l1d arch_capabilities
+
+arm64 VM:
+
+Architecture:        aarch64
+Byte Order:          Little Endian
+CPU(s):              8
+On-line CPU(s) list: 0-7
+Thread(s) per core:  1
+Core(s) per socket:  8
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           0x48
+Model:               0
+Stepping:            0x1
+BogoMIPS:            200.00
+L1d cache:           64K
+L1i cache:           64K
+L2 cache:            512K
+L3 cache:            32768K
+NUMA node0 CPU(s):   0-7
+Flags:               fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
+                     cpuid asimdrdm jscvt fcma dcpop asimddp asimdfhm
+
+
+Results from "sudo lshw":
+===================
+
+Driver machine: 
+
+    description: Rack Mount Chassis
+    product: PowerEdge R730 (SKU=NotProvided;ModelName=PowerEdge R730)
+    vendor: Dell Inc.
+    width: 64 bits
+    capabilities: smbios-2.8 dmi-2.8 smp vsyscall32
+    configuration: boot=normal chassis=rackmount 
+                   sku=SKU=NotProvided;ModelName=PowerEdge
+                   R730 uuid=44454C4C-5400-104E-8033-B9C04F464232
+  *-core
+       description: Motherboard
+       product: 0599V5
+       vendor: Dell Inc.
+       physical id: 0
+       version: A12
+     *-firmware
+          description: BIOS
+          vendor: Dell Inc.
+          physical id: 0
+          version: 1.5.4
+          date: 10/002/2015
+          size: 64KiB
+          capacity: 15MiB
+          capabilities: isa pci pnp upgrade shadowing cdboot bootselect edd
+                        int13floppytoshiba int13floppy360 int13floppy1200
+                        int13floppy720 int9keyboard int14serial int10video acpi
+                        usb biosbootspecification netboot uefi
+     *-cpu:0 thru 1
+          description: CPU
+          product: Intel(R) Xeon(R) CPU E5-2687W v3 @ 3.10GHz
+          vendor: Intel Corp.
+          physical id: 400
+          bus info: cpu@0
+          version: Intel(R) Xeon(R) CPU E5-2687W v3 @ 3.10GHz
+          slot: CPU1
+          size: 2611MHz
+          capacity: 4GHz
+          width: 64 bits
+          clock: 1010MHz
+          capabilities: x86-64 fpu fpu_exception wp vme de pse tsc msr pae mce
+                        cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts
+                        acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb
+                        rdtscp constant_tsc arch_perfmon pebs bts rep_good nopl
+                        xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq
+                        dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma
+                        cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe
+                        popcnt tsc_deadline_timer aes xsave avx f16c rdrand
+                        lahf_lm abm cpuid_fault epb invpcid_single pti ssbd
+                        ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid
+                        fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
+                        cqm xsaveopt cqm_llc cqm_occup_llc dtherm ida arat pln
+                        pts md_clear flush_l1d cpufreq
+          configuration: cores=10 enabledcores=10 threads=20
+        *-cache:0
+             description: L1 cache
+             physical id: 700
+             size: 640KiB
+             capacity: 640KiB
+             capabilities: internal write-back unified
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 701
+             size: 2560KiB
+             capacity: 2560KiB
+             capabilities: internal write-back unified
+             configuration: level=2
+        *-cache:2
+             description: L3 cache
+             physical id: 702
+             size: 25MiB
+             capacity: 25MiB
+             capabilities: internal write-back unified
+             configuration: level=3
+     *-cpu:1
+     *-memory
+          description: System Memory
+          physical id: 1000
+          slot: System board or motherboard
+          size: 512GiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank:0 thru 23
+             description: DIMM DDR4 Synchronous Registered (Buffered)
+                          LRDIMM 2133 MHz (0.5 ns)
+             product: M386A4G40DM0-CPB
+             vendor: 00CE00B300CE
+             physical id: 0
+             serial: 312AC174
+             slot: A1
+             size: 32GiB
+             width: 64 bits
+             clock: 2133MHz (0.5ns)
+     *-pci:0
+          description: Host bridge
+          product: Xeon E7 v3/Xeon E5 v3/Core i7 DMI2
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+        *-pci:0 thru 6
+             description: PCI bridge
+             product: Xeon E7 v3/Xeon E5 v3/Core i7 PCI Express Root Port 1
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 02
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci msi pciexpress pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:25 ioport:2000(size=4096) memory:94d00000-94efffff
+           *-storage
+                description: RAID bus controller
+                product: MegaRAID SAS-3 3108 [Invader]
+                vendor: LSI Logic / Symbios Logic
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                logical name: scsi0
+                version: 02
+                width: 64 bits
+                clock: 33MHz
+                capabilities: storage pm pciexpress vpd msi msix bus_master cap_list
+                configuration: driver=megaraid_sas latency=0
+                resources: irq:37 ioport:2000(size=256) memory:94e00000-94e0ffff
+                           memory:94d00000-94dfffff
+              *-disk
+                   description: SCSI Disk
+                   product: PERC H730 Mini
+                   vendor: DELL
+                   physical id: 2.0.0
+                   bus info: scsi@0:2.0.0
+                   logical name: /dev/sda
+                   version: 4.25
+                   size: 1115GiB (1197GB)
+                   capabilities: partitioned partitioned:dos
+                   configuration: ansiversion=5 logicalsectorsize=512
+                                  sectorsize=512 signature=3d8232a2
+                 *-volume
+                      description: EXT4 volume
+                      vendor: Linux
+                      physical id: 1
+                      bus info: scsi@0:2.0.0,1
+                      logical name: /dev/sda1
+                      logical name: /
+                      version: 1.0
+                      size: 1115GiB
+                      capacity: 1115GiB
+                      capabilities: primary bootable journaled
+                                    extended_attributes large_files huge_files
+                                    dir_nlink recover 64bit extents ext4 ext2
+                                    initialized
+                      configuration: created=2019-12-26 14:36:05 filesystem=ext4
+                                     lastmountpoint=/ modified=2020-08-19 11:22:56
+                                     mount.fstype=ext4 mount.options=rw,relatime,
+                                                  errors=remount-ro,data=ordered
+                                     mounted=2020-08-19 11:23:03 state=mounted
+        *-generic:0 thru 4 UNCLAIMED
+             description: System peripheral
+             product: Xeon E7 v3/Xeon E5 v3/Core i7 Address Map, VTd_Misc, System Management
+             vendor: Intel Corporation
+             physical id: 5
+             bus info: pci@0000:00:05.0
+             version: 02
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pciexpress cap_list
+             configuration: latency=0
+        *-storage:0
+             description: SATA controller
+             product: C610/X99 series chipset sSATA Controller [AHCI mode]
+             vendor: Intel Corporation
+             physical id: 11.4
+             bus info: pci@0000:00:11.4
+             version: 05
+             width: 32 bits
+             clock: 66MHz
+             capabilities: storage msi pm ahci_1.0 bus_master cap_list
+             configuration: driver=ahci latency=0
+             resources: irq:80 ioport:3078(size=8) ioport:308c(size=4)
+                        ioport:3070(size=8) ioport:3088(size=4)
+                        ioport:3040(size=32) memory:94f01000-94f017ff
+        *-communication:0 thru 1 UNCLAIMED
+             description: Communication controller
+             product: C610/X99 series chipset MEI Controller #1
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 05
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: latency=0
+             resources: iomemory:33f0-33ef memory:33ffff03000-33ffff0300f
+        *-usb:0 thru 1
+             description: USB controller
+             product: C610/X99 series chipset USB Enhanced Host Controller #2
+             vendor: Intel Corporation
+             physical id: 1a
+             bus info: pci@0000:00:1a.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:18 memory:94f03000-94f033ff
+           *-usbhost
+                product: EHCI Host Controller
+                vendor: Linux 4.15.0-112-generic ehci_hcd
+                physical id: 1
+                bus info: usb@1
+                logical name: usb1
+                version: 4.15
+                capabilities: usb-2.00
+                configuration: driver=hub slots=2 speed=480Mbit/s
+              *-usb
+                   description: USB hub
+                   vendor: Intel Corp.
+                   physical id: 1
+                   bus info: usb@1:1
+                   version: 0.05
+                   capabilities: usb-2.00
+                   configuration: driver=hub slots=6 speed=480Mbit/s
+                 *-usb:0 thru 1
+                      description: Mass storage device
+                      product: Internal Dual SD
+                      vendor: DELL
+                      physical id: 3
+                      bus info: usb@1:1.3
+                      logical name: scsi1
+                      version: 0.00
+                      serial: 012345678901
+                      capabilities: usb-2.10 scsi emulated scsi-host
+                      configuration: driver=usb-storage maxpower=100mA
+                                     speed=480Mbit/s
+                    *-disk
+                         description: SCSI Disk
+                         product: IDSDM
+                         vendor: DELL
+                         physical id: 0.0.0
+                         bus info: scsi@1:0.0.0
+                         logical name: /dev/sdb
+                         version: 0001
+                         size: 14GiB (16GB)
+                         configuration: logicalsectorsize=512 sectorsize=512
+        *-isa
+             description: ISA bridge
+             product: C610/X99 series chipset LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master cap_list
+             configuration: driver=lpc_ich latency=0
+             resources: irq:0
+        *-storage:1
+             description: SATA controller
+             product: C610/X99 series chipset 6-Port SATA Controller [AHCI mode]
+             vendor: Intel Corporation
+             physical id: 1f.2
+             bus info: pci@0000:00:1f.2
+             version: 05
+             width: 32 bits
+             clock: 66MHz
+             capabilities: storage msi pm ahci_1.0 bus_master cap_list
+             configuration: driver=ahci latency=0
+             resources: irq:81 ioport:3068(size=8) ioport:3084(size=4)
+                        ioport:3060(size=8) ioport:3080(size=4)
+                        ioport:3020(size=32) memory:94f00000-94f007ff
+     *-generic:0 thru 147 
+          description: System peripheral
+          product: Xeon E7 v3/Xeon E5 v3/Core i7 QPI Link 0
+          vendor: Intel Corporation
+          physical id: 4
+          bus info: pci@0000:7f:08.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+          configuration: latency=0
+
+Client VM:
+
+    description: Computer
+    product: KVM Virtual Machine
+    vendor: QEMU
+    version: 1.0
+    width: 64 bits
+    capabilities: smbios-3.0 dmi-3.0 smp cp15_barrier setend swp
+    configuration: boot=normal 
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-cpu
+          description: CPU
+          vendor: QEMU
+          physical id: 400
+          bus info: cpu@0
+          version: 1.0
+          slot: CPU 0
+          size: 2GHz
+          capacity: 2GHz
+          configuration: cores=4 enabledcores=4 threads=1
+     *-memory
+          description: System Memory
+          physical id: 1000
+          size: 8GiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 0
+             slot: DIMM 0
+             size: 8GiB
+     *-firmware
+          description: BIOS
+          vendor: EFI Development Kit II / OVMF
+          physical id: 0
+          version: 0.0.0
+          date: 02/06/2015
+          size: 96KiB
+          capabilities: uefi virtualmachine
+     *-pci
+          description: Host bridge
+          product: QEMU PCIe Host bridge
+          vendor: Red Hat, Inc.
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+        *-pci:0 thru 28
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:38 memory:eff0000-eff0fff ioport:1000(size=8192)
+                        memory:f000000-f1fffff ioport:8000000000(size=2097152)
+           *-pci
+                description: PCI bridge
+                product: Red Hat, Inc.
+                vendor: Red Hat, Inc.
+                physical id: 0
+                bus info: pci@0000:01:00.0
+                version: 00
+                width: 64 bits
+                clock: 66MHz
+                capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                configuration: driver=shpchp
+                resources: irq:81 memory:f100000-f1000ff ioport:1000(size=4096) 
+                           memory:f000000-f0fffff ioport:8000000000(size=1048576)
+              *-usb
+                   description: USB controller
+                   product: 82801DB/DBM (ICH4/ICH4-M) USB2 EHCI Controller
+                   vendor: Intel Corporation
+                   physical id: 1
+                   bus info: pci@0000:02:01.0
+                   version: 10
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: ehci bus_master
+                   configuration: driver=ehci-pci latency=0
+                   resources: irq:38 memory:f000000-f000fff
+                 *-usbhost
+                      product: EHCI Host Controller
+                      vendor: Linux 4.15.0-112-generic ehci_hcd
+                      physical id: 1
+                      bus info: usb@1
+                      logical name: usb1
+                      version: 4.15
+                      capabilities: usb-2.00
+                      configuration: driver=hub slots=6 speed=480Mbit/s
+                    *-usb:0
+                         description: Mouse
+                         product: QEMU USB Tablet
+                         vendor: QEMU
+                         physical id: 1
+                         bus info: usb@1:1
+                         version: 0.00
+                         serial: 42
+                         capabilities: usb-2.00
+                         configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+                    *-usb:1
+                         description: Keyboard
+                         product: QEMU USB Keyboard
+                         vendor: QEMU
+                         physical id: 2
+                         bus info: usb@1:2
+                         version: 0.00
+                         serial: 42
+                         capabilities: usb-2.00
+                         configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+              *-generic
+                   description: Unclassified device
+                   product: Virtio memory balloon
+                   vendor: Red Hat, Inc.
+                   physical id: 2
+                   bus info: pci@0000:02:02.0
+                   version: 00
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: bus_master cap_list
+                   configuration: driver=virtio-pci latency=0
+                   resources: iomemory:800-7ff irq:40 ioport:1000(size=32) 
+                              memory:8000000000-8000003fff
+                 *-virtio0 UNCLAIMED
+                      description: Virtual I/O device
+                      physical id: 0
+                      bus info: virtio@0
+                      configuration: driver=virtio_balloon
+              *-display
+                   description: Display controller
+                   product: Virtio GPU
+                   vendor: Red Hat, Inc.
+                   physical id: 3
+                   bus info: pci@0000:02:03.0
+                   version: 01
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: msix bus_master cap_list
+                   configuration: driver=virtio-pci latency=0
+                   resources: iomemory:800-7ff irq:37 memory:f001000-f001fff
+                              memory:8000004000-8000007fff
+                 *-virtio1 UNCLAIMED
+                      description: Virtual I/O device
+                      physical id: 0
+                      bus info: virtio@1
+                      configuration: driver=virtio_gpu
+  *-network
+       description: Ethernet interface
+       physical id: 1
+       logical name: docker0
+       capabilities: ethernet physical
+       configuration: broadcast=yes driver=bridge driverversion=2.3 firmware=N/A
+                      link=no multicast=yes
+
+
+x86_64 VM:
+
+    description: Computer
+    product: OpenStack Nova
+    vendor: OpenStack Foundation
+    version: 13.2.1-20191224192534
+    width: 64 bits
+    capabilities: smbios-2.8 dmi-2.8 smp vsyscall32
+    configuration: boot=normal family=Virtual Machine
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-firmware
+          description: BIOS
+          vendor: SeaBIOS
+          physical id: 0
+          version: rel-1.10.2-0-g5f4c7b1-20181220_000000-szxrtosci10000
+          date: 04/01/2014
+          size: 96KiB
+     *-cpu
+          description: CPU
+          product: Intel(R) Xeon(R) Gold 6266C CPU @ 3.00GHz
+          vendor: Intel Corp.
+          physical id: 400
+          bus info: cpu@0
+          version: pc-i440fx-2.8
+          slot: CPU 0
+          size: 2GHz
+          capacity: 2GHz
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8
+                        apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr
+                        sse sse2 ss ht syscall nx pdpe1gb rdtscp x86-64
+                        constant_tsc rep_good nopl xtopology nonstop_tsc cpuid
+                        tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1
+                        sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave
+                        avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch
+                        invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced
+                        fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid
+                        rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb
+                        avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 arat
+                        avx512_vnni md_clear flush_l1d arch_capabilities
+          configuration: cores=4 enabledcores=4 threads=2
+     *-memory
+          description: System Memory
+          physical id: 1000
+          size: 16GiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 0
+             slot: DIMM 0
+             size: 16GiB
+     *-pci
+          description: Host bridge
+          product: 440FX - 82441FX PMC [Natoma]
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+        *-isa
+             description: ISA bridge
+             product: 82371SB PIIX3 ISA [Natoma/Triton II]
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa
+             configuration: latency=0
+        *-ide
+             description: IDE interface
+             product: 82371SB PIIX3 IDE [Natoma/Triton II]
+             vendor: Intel Corporation
+             physical id: 1.1
+             bus info: pci@0000:00:01.1
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: ide 
+                           isa_compatibility_mode-only_controller__supports_bus_mastering
+                           bus_master
+             configuration: driver=ata_piix latency=0
+             resources: irq:0 ioport:1f0(size=8) ioport:3f6 ioport:170(size=8) ioport:376
+                        ioport:90c0(size=16)
+        *-usb
+             description: USB controller
+             product: 82371SB PIIX3 USB [Natoma/Triton II]
+             vendor: Intel Corporation
+             physical id: 1.2
+             bus info: pci@0000:00:01.2
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: uhci bus_master
+             configuration: driver=uhci_hcd latency=0
+             resources: irq:11 ioport:9080(size=32)
+           *-usbhost
+                product: UHCI Host Controller
+                vendor: Linux 4.15.0-115-generic uhci_hcd
+                physical id: 1
+                bus info: usb@1
+                logical name: usb1
+                version: 4.15
+                capabilities: usb-1.10
+                configuration: driver=hub slots=2 speed=12Mbit/s
+              *-usb
+                   description: Mouse
+                   product: QEMU USB Tablet
+                   vendor: QEMU
+                   physical id: 1
+                   bus info: usb@1:1
+                   version: 0.00
+                   serial: 42
+                   capabilities: usb-2.00
+                   configuration: driver=usbhid maxpower=100mA speed=12Mbit/s
+        *-bridge
+             description: Bridge
+             product: 82371AB/EB/MB PIIX4 ACPI
+             vendor: Intel Corporation
+             physical id: 1.3
+             bus info: pci@0000:00:01.3
+             version: 03
+             width: 32 bits
+             clock: 33MHz
+             capabilities: bridge
+             configuration: driver=piix4_smbus latency=0
+             resources: irq:9
+        *-display
+             description: VGA compatible controller
+             product: GD 5446
+             vendor: Cirrus Logic
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: vga_controller rom
+             configuration: driver=cirrus latency=0
+             resources: irq:0 memory:fa000000-fbffffff memory:fea50000-fea50fff
+                        memory:c0000-dffff
+        *-network
+             description: Ethernet controller
+             product: Virtio network device
+             vendor: Red Hat, Inc.
+             physical id: 3
+             bus info: pci@0000:00:03.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list rom
+             configuration: driver=virtio-pci latency=0
+             resources: irq:10 ioport:9000(size=64) memory:fea51000-fea51fff
+                        memory:fea00000-fea3ffff
+           *-virtio0
+                description: Ethernet interface
+                physical id: 0
+                bus info: virtio@0
+                logical name: eth0
+                serial: fa:16:3e:85:e6:bd
+                capabilities: ethernet physical
+                configuration: autonegotiation=off broadcast=yes
+                               driver=virtio_net driverversion=1.0.0
+                               link=yes multicast=yes
+        *-pci:0 thru 7
+             description: PCI bridge
+             product: QEMU PCI-PCI bridge
+             vendor: Red Hat, Inc.
+             physical id: 4
+             bus info: pci@0000:00:04.0
+             version: 00
+             slot: 0, chassis 1
+             width: 64 bits
+             clock: 66MHz
+             capabilities: pci msi slotid normal_decode cap_list
+             resources: memory:fea52000-fea520ff ioport:8000(size=4096)
+                        memory:fe800000-fe9fffff ioport:fce00000(size=2097152)
+        *-communication
+             description: Communication controller
+             product: Virtio console
+             vendor: Red Hat, Inc.
+             physical id: c
+             bus info: pci@0000:00:0c.0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list
+             configuration: driver=virtio-pci latency=0
+             resources: irq:11 ioport:9040(size=64) memory:fea5a000-fea5afff
+                        memory:fd000000-fd003fff
+           *-virtio1 UNCLAIMED
+                description: Virtual I/O device
+                physical id: 0
+                bus info: virtio@1
+                configuration: driver=virtio_console
+        *-generic
+             description: Unclassified device
+             product: Virtio memory balloon
+             vendor: Red Hat, Inc.
+             physical id: d
+             bus info: pci@0000:00:0d.0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: bus_master cap_list
+             configuration: driver=virtio-pci latency=0
+             resources: irq:10 ioport:90a0(size=32) memory:fd004000-fd007fff
+           *-virtio2 UNCLAIMED
+                description: Virtual I/O device
+                physical id: 0
+                bus info: virtio@2
+                configuration: driver=virtio_balloon
+
+arm64 VM:
+
+    description: Computer
+    product: KVM Virtual Machine
+    vendor: QEMU
+    version: 1.0
+    width: 64 bits
+    capabilities: smbios-3.0 dmi-3.0 smp cp15_barrier setend swp
+    configuration: boot=normal
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-cpu
+          description: CPU
+          vendor: QEMU
+          physical id: 400
+          bus info: cpu@0
+          version: 1.0
+          slot: CPU 0
+          size: 2GHz
+          capacity: 2GHz
+          configuration: cores=8 enabledcores=8 threads=1
+     *-memory
+          description: System Memory
+          physical id: 1000
+          size: 16GiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 0
+             slot: DIMM 0
+             size: 16GiB
+     *-firmware
+          description: BIOS
+          vendor: EFI Development Kit II / OVMF
+          physical id: 0
+          version: 0.0.0
+          date: 02/06/2015
+          size: 96KiB
+          capabilities: uefi virtualmachine
+     *-pci
+          description: Host bridge
+          product: QEMU PCIe Host bridge
+          vendor: Red Hat, Inc.
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+        *-pci:0 thru 28
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:38 memory:eff0000-eff0fff ioport:1000(size=8192)
+                        memory:f000000-f1fffff ioport:8000000000(size=2097152)
+           *-pci
+                description: PCI bridge
+                product: Red Hat, Inc.
+                vendor: Red Hat, Inc.
+                physical id: 0
+                bus info: pci@0000:01:00.0
+                version: 00
+                width: 64 bits
+                clock: 66MHz
+                capabilities: pci msi pm pciexpress normal_decode bus_master
+                              cap_list
+                configuration: driver=shpchp
+                resources: irq:85 memory:f100000-f1000ff ioport:1000(size=4096)
+                           memory:f000000-f0fffff ioport:8000000000(size=1048576)
+              *-usb
+                   description: USB controller
+                   product: 82801DB/DBM (ICH4/ICH4-M) USB2 EHCI Controller
+                   vendor: Intel Corporation
+                   physical id: 1
+                   bus info: pci@0000:02:01.0
+                   version: 10
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: ehci bus_master
+                   configuration: driver=ehci-pci latency=0
+                   resources: irq:38 memory:f000000-f000fff
+                 *-usbhost
+                      product: EHCI Host Controller
+                      vendor: Linux 4.15.0-115-generic ehci_hcd
+                      physical id: 1
+                      bus info: usb@1
+                      logical name: usb1
+                      version: 4.15
+                      capabilities: usb-2.00
+                      configuration: driver=hub slots=6 speed=480Mbit/s
+                    *-usb:0
+                         description: Mouse
+                         product: QEMU USB Tablet
+                         vendor: QEMU
+                         physical id: 1
+                         bus info: usb@1:1
+                         version: 0.00
+                         serial: 42
+                         capabilities: usb-2.00
+                         configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+                    *-usb:1
+                         description: Keyboard
+                         product: QEMU USB Keyboard
+                         vendor: QEMU
+                         physical id: 2
+                         bus info: usb@1:2
+                         version: 0.00
+                         serial: 42
+                         capabilities: usb-2.00
+                         configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+              *-generic
+                   description: Unclassified device
+                   product: Virtio memory balloon
+                   vendor: Red Hat, Inc.
+                   physical id: 2
+                   bus info: pci@0000:02:02.0
+                   version: 00
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: bus_master cap_list
+                   configuration: driver=virtio-pci latency=0
+                   resources: iomemory:800-7ff irq:40 ioport:1000(size=32)
+                              memory:8000000000-8000003fff
+                 *-virtio0 UNCLAIMED
+                      description: Virtual I/O device
+                      physical id: 0
+                      bus info: virtio@0
+                      configuration: driver=virtio_balloon
+              *-display
+                   description: Display controller
+                   product: Virtio GPU
+                   vendor: Red Hat, Inc.
+                   physical id: 3
+                   bus info: pci@0000:02:03.0
+                   version: 01
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: msix bus_master cap_list
+                   configuration: driver=virtio-pci latency=0
+                   resources: iomemory:800-7ff irq:37 memory:f001000-f001fff
+                              memory:8000004000-8000007fff
+                 *-virtio1 UNCLAIMED
+                      description: Virtual I/O device
+                      physical id: 0
+                      bus info: virtio@1
+                      configuration: driver=virtio_gpu
+
+
+Results from "perf list hw":
+===========================
+
+Driver machine: 
+
+List of pre-defined events (to be used in -e):
+
+  branch-instructions OR branches                    [Hardware event]
+  branch-misses                                      [Hardware event]
+  bus-cycles                                         [Hardware event]
+  cache-misses                                       [Hardware event]
+  cache-references                                   [Hardware event]
+  cpu-cycles OR cycles                               [Hardware event]
+  instructions                                       [Hardware event]
+  ref-cycles                                         [Hardware event]
+
+
+Results from "perf list sw":
+===========================
+
+Driver machine: 
+
+List of pre-defined events (to be used in -e):
+
+  alignment-faults                                   [Software event]
+  bpf-output                                         [Software event]
+  context-switches OR cs                             [Software event]
+  cpu-clock                                          [Software event]
+  cpu-migrations OR migrations                       [Software event]
+  dummy                                              [Software event]
+  emulation-faults                                   [Software event]
+  major-faults                                       [Software event]
+  minor-faults                                       [Software event]
+  page-faults OR faults                              [Software event]
+  task-clock                                         [Software event]
+
+Client VM:
+
+List of pre-defined events (to be used in -e):
+
+  alignment-faults                                   [Software event]
+  bpf-output                                         [Software event]
+  context-switches OR cs                             [Software event]
+  cpu-clock                                          [Software event]
+  cpu-migrations OR migrations                       [Software event]
+  dummy                                              [Software event]
+  emulation-faults                                   [Software event]
+  major-faults                                       [Software event]
+  minor-faults                                       [Software event]
+  page-faults OR faults                              [Software event]
+  task-clock                                         [Software event]
+
+arm64 VM:
+
+List of pre-defined events (to be used in -e):
+
+  alignment-faults                                   [Software event]
+  bpf-output                                         [Software event]
+  context-switches OR cs                             [Software event]
+  cpu-clock                                          [Software event]
+  cpu-migrations OR migrations                       [Software event]
+  dummy                                              [Software event]
+  emulation-faults                                   [Software event]
+  major-faults                                       [Software event]
+  minor-faults                                       [Software event]
+  page-faults OR faults                              [Software event]
+  task-clock                                         [Software event]
+
+
+Results from "perf list cache":
+==============================
+
+Driver machine: 
+
+List of pre-defined events (to be used in -e):
+
+  L1-dcache-load-misses                              [Hardware cache event]
+  L1-dcache-loads                                    [Hardware cache event]
+  L1-dcache-stores                                   [Hardware cache event]
+  L1-icache-load-misses                              [Hardware cache event]
+  LLC-load-misses                                    [Hardware cache event]
+  LLC-loads                                          [Hardware cache event]
+  LLC-store-misses                                   [Hardware cache event]
+  LLC-stores                                         [Hardware cache event]
+  branch-load-misses                                 [Hardware cache event]
+  branch-loads                                       [Hardware cache event]
+  dTLB-load-misses                                   [Hardware cache event]
+  dTLB-loads                                         [Hardware cache event]
+  dTLB-store-misses                                  [Hardware cache event]
+  dTLB-stores                                        [Hardware cache event]
+  iTLB-load-misses                                   [Hardware cache event]
+  iTLB-loads                                         [Hardware cache event]
+  node-load-misses                                   [Hardware cache event]
+  node-loads                                         [Hardware cache event]
+  node-store-misses                                  [Hardware cache event]
+  node-stores                                        [Hardware cache event]
+
+
+Results from "perf list pmu":
+============================
+
+Driver machine: 
+
+ (See perf_list_pmu_results.txt)
+
+Client VM:
+
+core imp def:
+  exe_stall_cycle
+       [Cycles of that the number of issue ups are less than 4]
+  fetch_bubble
+       [Instructions can receive, but not send]
+  hit_on_prf
+       [Hit on prefetched data]
+  if_is_stall
+       [Instruction fetch stall cycles]
+  iq_is_empty
+       [Instruction queue is empty]
+  l1d_cache_inval
+       [L1D cache invalidate]
+  l1d_cache_rd
+       [L1D cache access, read]
+  l1d_cache_refill_rd
+       [L1D cache refill, read]
+  l1d_cache_refill_wr
+       [L1D cache refill, write]
+  l1d_cache_wb_clean
+       [L1D cache Write-Back, cleaning and coherency]
+  l1d_cache_wb_victim
+       [L1D cache Write-Back, victim]
+  l1d_cache_wr
+       [L1D cache access, write]
+  l1d_tlb_rd
+       [L1D tlb access, read]
+  l1d_tlb_refill_rd
+       [L1D tlb refill, read]
+  l1d_tlb_refill_wr
+       [L1D tlb refill, write]
+  l1d_tlb_wr
+       [L1D tlb access, write]
+  l1i_cache_prf
+       [L1I cache prefetch access count]
+  l1i_cache_prf_refill
+       [L1I cache miss due to prefetch access count]
+  l2d_cache_inval
+       [L2D cache invalidate]
+  l2d_cache_rd
+       [L2D cache access, read]
+  l2d_cache_refill_rd
+       [L2D cache refill, read]
+  l2d_cache_refill_wr
+       [L2D cache refill, write]
+  l2d_cache_wb_clean
+       [L2D cache Write-Back, cleaning and coherency]
+  l2d_cache_wb_victim
+       [L2D cache Write-Back, victim]
+  l2d_cache_wr
+       [L2D cache access, write]
+  mem_stall_anyload
+       [No any micro operation is issued and meanwhile any load operation is
+        not resolved]
+  mem_stall_l1miss
+       [No any micro operation is issued and meanwhile there is any load
+        operation missing L1 cache and pending data refill]
+  mem_stall_l2miss
+       [No any micro operation is issued and meanwhile there is any load
+        operation missing both L1 and L2 cache and pending data refill from L3
+        cache]
+  prf_req
+       [Prefetch request from LSU]
+
+
+x86_64 VM:
+
+- $ perf list pmu
+
+List of pre-defined events (to be used in -e):
+
+  msr/pperf/                                         [Kernel PMU event]
+  msr/smi/                                           [Kernel PMU event]
+  msr/tsc/                                           [Kernel PMU event]
+  power/energy-cores/                                [Kernel PMU event]
+  power/energy-pkg/                                  [Kernel PMU event]
+  power/energy-ram/                                  [Kernel PMU event]
+
+arm64 VM:
+
+- $ perf list pmu
+
+core imp def:
+  exe_stall_cycle
+       [Cycles of that the number of issue ups are less than 4]
+  fetch_bubble
+       [Instructions can receive, but not send]
+  hit_on_prf
+       [Hit on prefetched data]
+  if_is_stall
+       [Instruction fetch stall cycles]
+  iq_is_empty
+       [Instruction queue is empty]
+  l1d_cache_inval
+       [L1D cache invalidate]
+  l1d_cache_rd
+       [L1D cache access, read]
+  l1d_cache_refill_rd
+       [L1D cache refill, read]
+  l1d_cache_refill_wr
+       [L1D cache refill, write]
+  l1d_cache_wb_clean
+       [L1D cache Write-Back, cleaning and coherency]
+  l1d_cache_wb_victim
+       [L1D cache Write-Back, victim]
+  l1d_cache_wr
+       [L1D cache access, write]
+  l1d_tlb_rd
+       [L1D tlb access, read]
+  l1d_tlb_refill_rd
+       [L1D tlb refill, read]
+  l1d_tlb_refill_wr
+       [L1D tlb refill, write]
+  l1d_tlb_wr
+       [L1D tlb access, write]
+  l1i_cache_prf
+       [L1I cache prefetch access count]
+  l1i_cache_prf_refill
+       [L1I cache miss due to prefetch access count]
+  l2d_cache_inval
+       [L2D cache invalidate]
+  l2d_cache_rd
+       [L2D cache access, read]
+  l2d_cache_refill_rd
+       [L2D cache refill, read]
+  l2d_cache_refill_wr
+       [L2D cache refill, write]
+  l2d_cache_wb_clean
+       [L2D cache Write-Back, cleaning and coherency]
+  l2d_cache_wb_victim
+       [L2D cache Write-Back, victim]
+  l2d_cache_wr
+       [L2D cache access, write]
+  mem_stall_anyload
+       [No any micro operation is issued and meanwhile any load operation is
+        not resolved]
+  mem_stall_l1miss
+       [No any micro operation is issued and meanwhile there is any load
+        operation missing L1 cache and pending data refill]
+  mem_stall_l2miss
+       [No any micro operation is issued and meanwhile there is any load
+        operation missing both L1 and L2 cache and pending data refill from L3
+        cache]
+  prf_req
+       [Prefetch request from LSU]
+
+
+Results from "perf list event_glob":
+===================================
+
+Driver machine: 
+
+DSB:
+  DSB_Coverage
+        [Fraction of Uops delivered by the DSB (aka Decoded Icache; or Uop Cache
+Frontend:
+  IFetch_Line_Utilization
+        [Rough Estimation of fraction of fetched lines bytes that were likely co
+Frontend_Bandwidth:
+  DSB_Coverage
+        [Fraction of Uops delivered by the DSB (aka Decoded Icache; or Uop Cache
+Memory_BW:
+  MLP
+        [Memory-Level-Parallelism (average number of L1 miss demand load when th
+Memory_Bound:
+  Load_Miss_Real_Latency
+        [Actual Average Latency for L1 data-cache miss demand loads]
+  MLP
+        [Memory-Level-Parallelism (average number of L1 miss demand load when th
+Memory_Lat:
+  Load_Miss_Real_Latency
+        [Actual Average Latency for L1 data-cache miss demand loads]
+Pipeline:
+  CPI
+        [Cycles Per Instruction (threaded)]
+  ILP
+        [Instruction-Level-Parallelism (average number of uops executed when the
+  UPI
+        [Uops Per Instruction]
+Ports_Utilization:
+  ILP
+        [Instruction-Level-Parallelism (average number of uops executed when the
+Power:
+  C2_Pkg_Residency
+        [C2 residency percent per package]
+  C3_Core_Residency
+        [C3 residency percent per core]
+  C3_Pkg_Residency
+        [C3 residency percent per package]
+  C6_Core_Residency
+        [C6 residency percent per core]
+  C6_Pkg_Residency
+        [C6 residency percent per package]
+  C7_Core_Residency
+        [C7 residency percent per core]
+  C7_Pkg_Residency
+        [C7 residency percent per package]
+  Turbo_Utilization
+        [Average Frequency Utilization relative nominal frequency]
+SMT:
+  CORE_CLKS
+        [Core actual clocks when any thread is active on the physical core]
+  CoreIPC
+        [Instructions Per Cycle (per physical core)]
+  SMT_2T_Utilization
+        [Fraction of cycles where both hardware threads were active]
+Summary:
+  CLKS
+        [Per-thread actual clocks when the logical processor is active. This is
+  CPI
+        [Cycles Per Instruction (threaded)]
+  CPU_Utilization
+        [Average CPU Utilization]
+  Instructions
+        [Total number of retired Instructions]
+  Kernel_Utilization
+        [Fraction of cycles spent in Kernel mode]
+  SMT_2T_Utilization
+        [Fraction of cycles where both hardware threads were active]
+TLB:
+  Page_Walks_Utilization
+        [Utilization of the core's Page Walker(s) serving STLB misses triggered
+TopDownL1:
+  IPC
+        [Instructions Per Cycle (per logical thread)]
+  SLOTS
+        [Total issue-pipeline slots]
+Unknown_Branches:
+  BAClear_Cost
+        [Average Branch Address Clear Cost (fraction of cycles)]
+
+x86_64 VM:
+
+DSB:
+  DSB_Coverage
+        [Fraction of Uops delivered by the DSB (aka Decoded Icache; or Uop Cache)]
+FLOPS:
+  GFLOPs
+        [Giga Floating Point Operations Per Second]
+Frontend:d
+  IFetch_Line_Utilization
+        [Rough Estimation of fraction of fetched lines bytes that were likely
+         consumed by program instructions]
+Frontend_Bandwidth:
+  DSB_Coverage
+        [Fraction of Uops delivered by the DSB (aka Decoded Icache; or Uop Cache)]
+Memory_BW:
+  MLP
+        [Memory-Level-Parallelism (average number of L1 miss demand load 
+         when there is at least 1 such miss)]
+Memory_Bound:
+  Load_Miss_Real_Latency
+        [Actual Average Latency for L1 data-cache miss demand loads]
+  MLP
+        [Memory-Level-Parallelism (average number of L1 miss demand load
+         when there is at least 1 such miss)]
+Memory_Lat:
+  Load_Miss_Real_Latency
+        [Actual Average Latency for L1 data-cache miss demand loads]
+Pipeline:
+  CPI
+        [Cycles Per Instruction (threaded)]
+  ILP
+        [Instruction-Level-Parallelism (average number of uops executed
+         when there is at least 1 uop executed)]
+  UPI
+        [Uops Per Instruction]
+Ports_Utilization:
+  ILP
+        [Instruction-Level-Parallelism (average number of uops executed
+         when there is at least 1 uop executed)]
+Power:
+  C2_Pkg_Residency
+        [C2 residency percent per package]
+  C3_Core_Residency
+        [C3 residency percent per core]
+  C3_Pkg_Residency
+        [C3 residency percent per package]
+  C6_Core_Residency
+        [C6 residency percent per core]
+  C6_Pkg_Residency
+        [C6 residency percent per package]
+  C7_Core_Residency
+        [C7 residency percent per core]
+  C7_Pkg_Residency
+        [C7 residency percent per package]
+  Turbo_Utilization
+        [Average Frequency Utilization relative nominal frequency]
+SMT:
+  CORE_CLKS
+        [Core actual clocks when any thread is active on the physical core]
+  CoreIPC
+        [Instructions Per Cycle (per physical core)]
+  SMT_2T_Utilization
+        [Fraction of cycles where both hardware threads were active]
+Summary:
+  CLKS
+        [Per-thread actual clocks when the logical processor is active.
+         This is called 'Clockticks' in VTune]
+  CPI
+        [Cycles Per Instruction (threaded)]
+  CPU_Utilization
+        [Average CPU Utilization]
+  GFLOPs
+        [Giga Floating Point Operations Per Second]
+  Instructions
+        [Total number of retired Instructions]
+  Kernel_Utilization
+        [Fraction of cycles spent in Kernel mode]
+  SMT_2T_Utilization
+        [Fraction of cycles where both hardware threads were active]
+TLB:
+  Page_Walks_Utilization
+        [Utilization of the core's Page Walker(s) serving STLB misses
+         triggered by instruction/Load/Store accesses]
+TopDownL1:
+  IPC
+        [Instructions Per Cycle (per logical thread)]
+  SLOTS
+        [Total issue-pipeline slots]
+Unknown_Branches:
+  BAClear_Cost
+        [Average Branch Address Clear Cost (fraction of cycles)]
+
+
+Results from "perf bench":
+========================
+
+
+ (See vm_perf_bench.txt)
+
